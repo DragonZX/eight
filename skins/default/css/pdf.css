@@ -46,7 +46,7 @@ td.name
 .patronymic
 	{
 	font-size: 9pt;
-	border: 0px solid red;
+	border: 0 solid red;
 	}
 
 td.internal_phone
@@ -75,7 +75,7 @@ td.position
 	{
 	width: 30%;
 	font-size: 9pt;
-	padding-right: 0px;
+	padding-right: 0;
 	}
 
 table.staff tr td

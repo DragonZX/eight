@@ -779,7 +779,3 @@ class LDAP
 		return $Value;
 		}
 	}
-	
-
-
-?>

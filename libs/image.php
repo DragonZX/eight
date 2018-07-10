@@ -6,4 +6,3 @@ fclose($Fopen);
 Header('Content-type: image/jpeg');
 Header('Content-disposition: inline; filename=jpeg_photo.jpg');
 echo $File;
-?>

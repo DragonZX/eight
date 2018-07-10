@@ -43,7 +43,7 @@
  display: inline;
  position: relative;
  float: left;
- z-index: none;
+ z-index: auto;
 }
 
 .lv_skin * {
@@ -71,8 +71,8 @@
 /* The the previous/next overlay buttons on top of images */
 .lv_inner_previous_next_overlays {
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   padding: 0;
@@ -209,15 +209,15 @@
   cursor: pointer;
 }
 .lv_side_button_previous {
-  margin-left: 0px;
+  margin-left: 0;
   background-image: url("skins/light/sprite.png");
   background-repeat: no-repeat;
-  background-position: 0px -33px;
+  background-position: 0 -33px;
 }
 .lv_side_button_previous:hover,
-.lv_side_left .lv_side_button_out { background-position: 0px -64px; }
+.lv_side_left .lv_side_button_out { background-position: 0 -64px; }
 .lv_side_button_next {
-  margin-left: 0px;
+  margin-left: 0;
   background-image: url("skins/light/sprite.png");
   background-repeat: no-repeat;
   background-position: -41px -33px;
@@ -228,7 +228,7 @@
 
 /* disabled states */
 .lv_side_buttons_underneath .lv_side_left_disabled .lv_side_button,
-.lv_side_buttons_underneath .lv_side_left_disabled:hover .lv_side_button { background-position: 0px -95px; }
+.lv_side_buttons_underneath .lv_side_left_disabled:hover .lv_side_button { background-position: 0 -95px; }
 
 .lv_button_top_close {
   width: 33px;
@@ -237,13 +237,13 @@
   cursor: pointer;
   background-image: url("skins/light/sprite.png");
   background-repeat: no-repeat;
-  background-position: 0px 0px;
+  background-position: 0 0;
   /* the spacing option set on the relative controls is taken into account when positioning */
   top: 17px;
   /* left or right is set on the css of the skin */
 }
 .lv_button_top_close:hover {
-  background-position: -33px 0px;
+  background-position: -33px 0;
 }
 
 
@@ -297,10 +297,10 @@
 }
 
 .lv_top_previous { width: 63px; }
-.lv_top_previous .lv_icon { background-position: 0px -96px; }
-.lv_top_previous:hover .lv_icon { background-position: 0px -129px; }
+.lv_top_previous .lv_icon { background-position: 0 -96px; }
+.lv_top_previous:hover .lv_icon { background-position: 0 -129px; }
 .lv_top_previous .lv_icon_disabled,
-.lv_top_previous:hover .lv_icon_disabled { background-position: 0px -162px; }
+.lv_top_previous:hover .lv_icon_disabled { background-position: 0 -162px; }
 
 .lv_top_slideshow { width: 21px; display: none; position: relative; }
 .lv_controls_top_with_slideshow .lv_top_slideshow { display: block; }
@@ -402,20 +402,20 @@
   border: none;
   background-repeat: no-repeat;
   background: url('skins/light/sprite.png');
-  background-position: -67px 0px;
+  background-position: -67px 0;
   cursor: pointer;
 }
 
-.lv_slider_number_empty { background-position: -151px 0px; cursor: default; }
+.lv_slider_number_empty { background-position: -151px 0; cursor: default; }
 .lv_slider_number_last { margin-right: 0; }
 
 .lv_slider_number:hover {
-  background-position: -95px 0px;
+  background-position: -95px 0;
   
 }
 .lv_slider_numbers .lv_slider_number_active,
 .lv_slider_numbers .lv_slider_number_active:hover {
-  background-position: -123px 0px;
+  background-position: -123px 0;
   color: #808080;
   cursor: default;
 }
@@ -540,9 +540,9 @@
   background: #161616;
 }
 
-.lv_thumbnail_icon_video { background-position: 0px -196px; }
+.lv_thumbnail_icon_video { background-position: 0 -196px; }
 .lv_thumbnail:hover .lv_thumbnail_icon_video { background-position: -36px -196px; }
-.lv_thumbnail_active:hover .lv_thumbnail_icon_video { background-position: 0px -196px; }
+.lv_thumbnail_active:hover .lv_thumbnail_icon_video { background-position: 0 -196px; }
 
 /* 
  * Skins
@@ -582,7 +582,7 @@
  * skin: 'light'
  */
 /* title/caption */
-.lv_window_light .lv_title_caption { text-shadow: 0px 1px 1px rgba(0,0,0,.25); }
+.lv_window_light .lv_title_caption { text-shadow: 0 1px 1px rgba(0,0,0,.25); }
 
 /* close button */
 .lv_window_light .lv_button_top_close {
@@ -606,7 +606,9 @@
   background-image: url('skins/light/sprite_ie_lt_7.png'); /* IE < 7 */
 }
 
-
+.surname_head.locked, .name.locked {
+  text-decoration: line-through;
+}
 /*
  * skin: 'dark'
  */
@@ -665,7 +667,7 @@
  * skin: 'mac'
  */
 /* title/caption */
-.lv_window_mac .lv_title_caption { text-shadow: 0px 1px 1px rgba(0,0,0,.25); }
+.lv_window_mac .lv_title_caption { text-shadow: 0 1px 1px rgba(0,0,0,.25); }
 
 /* sprite */
 .lv_window_mac .lv_side_button_previous,
@@ -680,7 +682,7 @@
 .lv_controls_top_close_skin_mac .lv_controls_top_close_button,
 .lv_thumbnails_skin_mac .lv_thumbnail_icon {
   background-image: url('skins/mac/sprite.png') !important;
-  background-image: url('skins/mac/sprite_ie_lt_7.png'); IE < 7
+  /*background-image: url('skins/mac/sprite_ie_lt_7.png');*/
 }
 
 /* close button */

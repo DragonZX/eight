@@ -6,4 +6,3 @@
     return str_replace($rus, $lat, $str);
   }
   
-?>

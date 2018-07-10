@@ -83,6 +83,3 @@ if($NEAR_BIRTHDAYS)
 	echo"</fieldset></div>";
 
 	}
-
-
-?>

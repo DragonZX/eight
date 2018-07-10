@@ -718,5 +718,3 @@ abstract class Alphabet
 		echo "</fieldset>";
 		}
 	}
-
-?>
