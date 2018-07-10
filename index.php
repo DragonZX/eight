@@ -9,6 +9,7 @@ require_once("./libs/spyc.php");
 
 Application::makeLdapConfigAttrLowercase();	//Преобразуем все атрибуты LDAP в нижний регистр.
 $L=new Localization("./config/locales/".$LOCALIZATION.".yml");
+if ($DEBUG_MODE){ini_set("display_errors", 1);}
 
 //Database
 //----------------------------------------
