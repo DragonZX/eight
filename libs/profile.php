@@ -15,14 +15,14 @@ if($_COOKIE['dn'])
 		
 		if($vac_from=$ldap->getValue($_COOKIE['dn'], $LDAP_ST_DATE_VACATION_FIELD))
 			$vac_from=Time::modifyDateFormat($vac_from, $VAC_DATE_FORMAT, 'dd.mm.yyyy');
-		if($vac_to=$ldap->getValue($_COOKIE['dn'], $LDAP_END_DATE_VACATION_FIELD))
+		if($vac_to=$ldap->getValue($_COOKIE['dn'], $LDAP_ST_DATE_VACATION_FIELD))
 			$vac_to=Time::modifyDateFormat($vac_to, $VAC_DATE_FORMAT, 'dd.mm.yyyy');
 		
 		echo"<li><a href=\"newwin.php?menu_marker=si_employeeview&dn=".$_COOKIE['dn']."\" data-lightview-type=\"iframe\" data-lightview-options=\"width: '80%', height: '100%', keyboard: {esc: true}, skin: 'light'\" class=\"lightview\">".$L->l("profile")."</a></li>";
 		
 		if($VACATION)
 			{
-			echo"<li><span id=\"Vac\">".$L->l("vacation_plan")."<big><big>&rarr;</big></big> <span class=\"\">
+			echo"<li><span id=\"Vac\">".$L->l("vacation_plan")."<strong><strong>&rarr;</strong></strong> <span class=\"\">
 			<input type=\"text\" name=\"vac_from\" id=\"vac_from\" class=\"date\" value=\"".$vac_from."\"/>
 			<em><i></i></em></span> &mdash; <span class=\"\">
 			<input type=\"text\" name=\"vac_to\" id=\"vac_to\" class=\"date\" value=\"".$vac_to."\" />
@@ -49,3 +49,4 @@ if($_COOKIE['dn'])
 		echo"</ul></fieldset>";	
 		}
 	}
+?>

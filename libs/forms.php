@@ -254,7 +254,7 @@ class LDAPTable
 					switch($this->Attributes['order_format'][$j])
 						{
 						case 'ad_def_full_name':
-							$ArrSorted[$i]=preg_replace("/([ёA-zА-я-]+[\s]{1}[ёA-zA-я]{1}.)[\s]{1}([ёA-zА-я-]+)/u", "\\2 \\1", $ArrSorted[$i]);
+							$ArrSorted[$i]=preg_replace("/([ёA-zA-я-]+[\s]{1}[ёA-zA-я]{1}.)[\s]{1}([ёA-zA-я-]+)/", "\\2 \\1", $ArrSorted[$i]);
 						break;
 						
 						case 'dd.mm.yyyy':
@@ -631,13 +631,6 @@ class LDAP
 			$Entries=ldap_get_entries($this->LC, $LS);
 
 			}
-
-		/*for($i=0; $i<$Entries[count]; $i++)
-			{
-			$sss = explode(" ", $Entries[$i]['displayname'][0]);
-			$Entries[$i]['displayname'][0] = $sss[1]." ".$str = mb_substr($sss[2], 0, 1, 'UTF-8').". ".$sss[0];
-			}*/
-
 		return $Entries;
 		}
 		
@@ -663,7 +656,7 @@ class LDAP
 							{
 							$d="";
 							foreach($val AS $key1=>$val1)
-								{		
+								{
 								if(is_array($val1))
 									{
 									foreach($val1 AS $key2=>$val2)
@@ -681,9 +674,8 @@ class LDAP
 									
 								switch($val1)
 									{
-									case 'ad_def_full_name':
-										$LastVal[$key-1]=preg_replace("/([ёA-zА-я-]+[\s]{1}[ёA-zА-я]{1}.)[\s]{1}([ёA-zА-я-]+)/u", "\\2 \\1", $LastVal[$key-1]);
-
+									case 'ad_def_full_name':										
+										$LastVal[$key-1]=preg_replace("/([ёA-zA-я-]+[\s]{1}[ёA-zA-я]{1}.)[\s]{1}([ёA-zA-я-]+)/", "\\2 \\1", $LastVal[$key-1]);
 									break;	
 
 									case 'order_replace':	
@@ -717,7 +709,7 @@ class LDAP
 				/*foreach($ArrSorted AS $key=>$value)
 					{
 					echo "".$value."<br/>";
-					}*/				
+					}				*/
 				}			
 			//-----------------------------------------------------------------------------
 			
@@ -779,3 +771,7 @@ class LDAP
 		return $Value;
 		}
 	}
+	
+
+
+?>

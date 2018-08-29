@@ -19,3 +19,5 @@ $ldap=new LDAP($LDAPServer, $LDAP_WRITE_USER, $LDAP_WRITE_PASSWORD);
 //----------------------------------------	
 include_once("../auth.php");
 //----------------------------------------	
+
+?>

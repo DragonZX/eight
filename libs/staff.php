@@ -22,37 +22,21 @@ abstract class Staff
 		return self::makeNameUrlFromDn($Dn_and_name[$GLOBALS['LDAP_DISTINGUISHEDNAME_FIELD']][0], $Dn_and_name[$GLOBALS['DISPLAY_NAME_FIELD']][0]);
 		}*/
 
-	public function getSurname($value)
-		{
-		if($GLOBALS['USE_DISPLAY_NAME'])
-			{
-			$fio = explode(" ", $value);
-			if(preg_match("/([ёA-zА-я-]+[\s]{1}[ёA-zА-я]{1}.)[\s]{1}([ёA-zА-я-]+)/u", $value))
-				return $fio[2];
-			else
-				return $fio[0];
-			}
-		else
-			{
-			return $value; //Не правильно
-			}
-		}
-
 	public static function makeNameUrlFromDn($DN, $Title="")
 		{
 		if($GLOBALS['USE_DISPLAY_NAME'])
 			{
-			$DN=preg_replace("/([ёA-zА-я-]+)[\s]{1}([ёA-zА-я-]+[\s]{1}[ёA-zА-я-]+)(CN.*)/u", "<a href=\"newwin.php?menu_marker=si_employeeview&dn=\\3\" data-lightview-type=\"iframe\" data-lightview-options=\"width: '80%', height: '100%', keyboard: {esc: true}, skin: 'light'\" class=\"lightview in_link\"><span class='surname'>\\1</span> \\2</a>", $Title.$DN);
-			$DN=preg_replace("/([ёA-zА-я-]+[\s]{1}[ёA-zA-я]{1}.)[\s]{1}([ёA-zА-я-]+)(CN.*)/u", "<a href=\"newwin.php?menu_marker=si_employeeview&dn=\\3\" data-lightview-type=\"iframe\" data-lightview-options=\"width: '80%', height: '100%', keyboard: {esc: true}, skin: 'light'\" class=\"lightview in_link\"><span class='surname'>\\2</span> \\1</a>", $DN);	
-			$DN=preg_replace("/([ёA-zA-я0-9№\s-]{1,})(CN.*)/u", "<a href=\"newwin.php?menu_marker=si_employeeview&dn=\\2\" data-lightview-type=\"iframe\" data-lightview-options=\"width: '80%', height: '100%', keyboard: {esc: true}, skin: 'light'\" class=\"lightview in_link\"><span class='surname'> \\1</span></a>", $DN);		
-			$DN=preg_replace("/^CN=([ёA-zA-я0-9\s\.-]{1,})(.*)$/u", "<a href=\"newwin.php?menu_marker=si_employeeview&dn=\\0\" data-lightview-type=\"iframe\" data-lightview-options=\"width: '80%', height: '100%', keyboard: {esc: true}, skin: 'light'\" class=\"lightview in_link\"><span class='surname'> \\1</span></a>", $DN);		
+			$DN=preg_replace("/([ёA-zA-я-]+)[\s]{1}([ёA-zA-я-]+[\s]{1}[ёA-zA-я-]+)(CN.*)/", "<a href=\"newwin.php?menu_marker=si_employeeview&dn=\\3\" data-lightview-type=\"iframe\" data-lightview-options=\"width: '80%', height: '100%', keyboard: {esc: true}, skin: 'light'\" class=\"lightview in_link\"><span class='surname'>\\1</span> \\2</a>", $Title.$DN);
+			$DN=preg_replace("/([ёA-zA-я-]+[\s]{1}[ёA-zA-я]{1}.)[\s]{1}([ёA-zA-я-]+)(CN.*)/", "<a href=\"newwin.php?menu_marker=si_employeeview&dn=\\3\" data-lightview-type=\"iframe\" data-lightview-options=\"width: '80%', height: '100%', keyboard: {esc: true}, skin: 'light'\" class=\"lightview in_link\"><span class='surname'>\\2</span> \\1</a>", $DN);	
+			$DN=preg_replace("/([ёA-zA-я0-9№\s-]{1,})(CN.*)/", "<a href=\"newwin.php?menu_marker=si_employeeview&dn=\\2\" data-lightview-type=\"iframe\" data-lightview-options=\"width: '80%', height: '100%', keyboard: {esc: true}, skin: 'light'\" class=\"lightview in_link\"><span class='surname'> \\1</span></a>", $DN);		
+			$DN=preg_replace("/^CN=([ёA-zA-я0-9\s\.-]{1,})(.*)$/", "<a href=\"newwin.php?menu_marker=si_employeeview&dn=\\0\" data-lightview-type=\"iframe\" data-lightview-options=\"width: '80%', height: '100%', keyboard: {esc: true}, skin: 'light'\" class=\"lightview in_link\"><span class='surname'> \\1</span></a>", $DN);		
 			}
 		else
 			{
-			$DN=preg_replace("/^[A-Za-z]+=*([ёА-яA-z0-9\s-.]+),[\S\s]+$/eu", "'<a href=\"newwin.php?menu_marker=si_employeeview&dn='.'\\0'.'\" data-lightview-type=\"iframe\" data-lightview-options=\"width: '80%', height: '100%', keyboard: {esc: true}, skin: 'light'\" class=\"lightview in_link\">___\\1</a>'", $DN);
-			$DN=preg_replace("/___([ёA-zА-я-]+)[\s]{1}([ёA-zА-я-]+[\s]{1}[ёA-zА-я-]+)/u", "<span class='surname'>\\1</span> \\2", $DN);
+			$DN=preg_replace("/^[A-Za-z]+=*([ёА-яA-z0-9\s-.]+),[\S\s]+$/e", "'<a href=\"newwin.php?menu_marker=si_employeeview&dn='.'\\0'.'\" data-lightview-type=\"iframe\" data-lightview-options=\"width: '80%', height: '100%', keyboard: {esc: true}, skin: 'light'\" class=\"lightview in_link\">___\\1</a>'", $DN);
+			$DN=preg_replace("/___([ёA-zA-я-]+)[\s]{1}([ёA-zA-я-]+[\s]{1}[ёA-zA-я-]+)/", "<span class='surname'>\\1</span> \\2", $DN);
 			//Для формата Имя О. Фамилия
-			$DN=preg_replace("/___([ёA-zА-я-]+[\s]{1}[ёA-zA-я]{1}.)[\s]{1}([ёA-zА-я-]+)/u", "<span class='surname'>\\2</span> \\1", $DN);	
+			$DN=preg_replace("/___([ёA-zA-я-]+[\s]{1}[ёA-zA-я]{1}.)[\s]{1}([ёA-zA-я-]+)/", "<span class='surname'>\\2</span> \\1", $DN);	
 			}	
 		return $DN;
 		}
@@ -60,15 +44,7 @@ abstract class Staff
 	public static function makeMailUrl($Mail)
 		{
 		if($Mail)
-			return preg_replace("/([A-z0-9_\.\-]{1,20}@[A-z0-9\.\-]{1,20}\.[A-z]{2,4})/u", "<a href='mailto:\\1' class='in_link'>\\1</a>", $Mail);
-		else
-			return "x";
-		}
-
-	public static function makePlainText($Var)
-		{
-		if($Var)
-			return $Var;
+			return preg_replace("/([A-z0-9_\.\-]{1,20}@[A-z0-9\.\-]{1,20}\.[A-z]{2,4})/", "<a href='mailto:\\1' class='in_link'>\\1</a>", $Mail);
 		else
 			return "x";
 		}
@@ -96,13 +72,12 @@ abstract class Staff
 		if (empty($Val)) return 'x';
 		if($Link)
 		{
-			$call_via_ip = ($GLOBALS['ENABLE_CALL_VIA_IP'] && $_COOKIE['dn'])?"call_via_ip":"";
 			if(@$GLOBALS['FORMAT_INTERNAL_PHONE'])
 			{		
-				$Val="<a href=\"".@$GLOBALS['PHONE_LINK_TYPE'].$phone_attr['clear_phone']."\" data-phone-for-ip-call=\"".$phone_attr['clear_phone']."\" class=\"in_link int_phone ".$call_via_ip."\">".$phone_attr['format_phone']."</a>";
+				$Val="<a href=\"callto:".$phone_attr['clear_phone']."\" class=\"in_link int_phone\">".$phone_attr['format_phone']."</a>";
 			}	
 			else
-				$Val="<a href=\"".@$GLOBALS['PHONE_LINK_TYPE'].$Val."\" data-phone-for-ip-call=\"".$Val."\"  class=\"in_link int_phone ".$call_via_ip."\">".$Val."</a>";
+				$Val="<a href=\"callto:".$Val."\" class=\"in_link int_phone\">".$Val."</a>";
 		}
 		else
 			{
@@ -125,10 +100,10 @@ abstract class Staff
 					$phone_title="title=\"".$phone_attr['provider_desc']."\"";
 				else
 					$phone_title="title=\"\"";
-				$Val="<a href=\"".@$GLOBALS['PHONE_LINK_TYPE'].$phone_attr['clear_phone']."\" class=\"in_link cityphone\" ".$phone_title.">".$phone_attr['format_phone']."</a>";
+				$Val="<a href=\"callto:".$phone_attr['clear_phone']."\" class=\"in_link cityphone\" ".$phone_title.">".$phone_attr['format_phone']."</a>";
 			}
 			else
-				$Val="<a href=\"".@$GLOBALS['PHONE_LINK_TYPE'].$Val."\" class=\"in_link cityphone\">".$Val."</a>";
+				$Val="<a href=\"callto:".$Val."\" class=\"in_link cityphone\">".$Val."</a>";
 		}
 		else
 			{
@@ -143,23 +118,16 @@ abstract class Staff
 		$phone_attr=get_phone_attr($Val);
 		if (empty($Val)) return 'x';
 		if($Link)
-			{	
-			$call_via_ip = ($GLOBALS['ENABLE_CALL_VIA_IP'] && $_COOKIE['dn'])?"call_via_ip":"";
-
+		{
 			if($GLOBALS['FORMAT_CELL_PHONE'])
-				{
+			{
 				if($GLOBALS['USE_PHONE_CODES_DESCRIPTION'] AND $phone_attr['provider_desc'])
 					$phone_title="title=\"".$phone_attr['provider_desc']."\"";
-
-				$phone_for_call_via_ip = str_replace ("+7" , $GLOBALS['CALL_VIA_IP_CHANGE_PLUS_AND_SEVEN'], $phone_attr['clear_phone']);
-				@$Val="<a href=\"".@$GLOBALS['PHONE_LINK_TYPE'].$phone_attr['clear_phone']."\" data-phone-for-ip-call=\"".$phone_for_call_via_ip."\" class=\"in_link cell_phone ".$call_via_ip."\" ".$phone_title.">".$phone_attr['format_phone']."</a>";
-				}
-			else
-				{	
-				$phone_for_call_via_ip = str_replace ("+7" , $GLOBALS['CALL_VIA_IP_CHANGE_PLUS_AND_SEVEN'], $Val);	
-				$Val="<a href=\"".@$GLOBALS['PHONE_LINK_TYPE'].$Val."\" data-phone-for-ip-call=\"".$phone_for_call_via_ip."\" class=\"in_link cell_phone ".$call_via_ip."\">".$Val."</a>";
-				}
+				@$Val="<a href=\"callto:".$phone_attr['clear_phone']."\" class=\"in_link cell_phone\" ".$phone_title.">".$phone_attr['format_phone']."</a>";
 			}
+			else
+				$Val="<a href=\"callto:".$Val."\" class=\"in_link cell_phone\">".$Val."</a>";
+		}
 		else
 			{
 			if(@$GLOBALS['FORMAT_CELL_PHONE'])
@@ -178,12 +146,12 @@ abstract class Staff
 			if($GLOBALS['FORMAT_HOME_PHONE'])
 			{
 				if($GLOBALS['USE_PHONE_CODES_DESCRIPTION'] AND $phone_attr['provider_desc'])
-					$Val="<acronym title =\"".$phone_attr['provider_desc']."\"><a href=\"".@$GLOBALS['PHONE_LINK_TYPE'].$phone_attr['clear_phone']."\" class=\"in_link homephone\">".$phone_attr['format_phone']."</a></acronym>";
+					$Val="<span title =\"".$phone_attr['provider_desc']."\"><a href=\"callto:".$phone_attr['clear_phone']."\" class=\"in_link homephone\">".$phone_attr['format_phone']."</a></acronym>";
 				else
-					$Val="<a href=\"".@$GLOBALS['PHONE_LINK_TYPE'].$phone_attr['clear_phone']."\" class=\"in_link homephone\">".$phone_attr['format_phone']."</a>";
+					$Val="<a href=\"callto:".$phone_attr['clear_phone']."\" class=\"in_link homephone\">".$phone_attr['format_phone']."</a>";
 			}
 			else
-				$Val="<a href=\"".@$GLOBALS['PHONE_LINK_TYPE'].$Val."\" class=\"in_link homephone\">".$Val."</a>";
+				$Val="<a href=\"callto:".$Val."\" class=\"in_link homephone\">".$Val."</a>";
 		}
 		else
 			{
@@ -206,7 +174,7 @@ abstract class Staff
 	public static function makeTitle($Val)
 		{
 		if($Val)
-			return preg_replace('/(?:\"([^\"]+)\")/u', '&laquo;\\1&raquo;', $Val);
+			return preg_replace('/(?:\"([^\"]+)\")/', '&laquo;\\1&raquo;', $Val);
 		else
 			return "x";	
 		}
@@ -215,7 +183,7 @@ abstract class Staff
 		{
 		if($Val)
 			{
-			$return="<span class=\"dep_name\">".preg_replace('/(?:\"([^\"]+)\")/u', '&laquo;\\1&raquo;', str_replace("\\", " &rarr; ", $Val))."</span>";	
+			$return="<span class=\"dep_name\">".preg_replace('/(?:\"([^\"]+)\")/', '&laquo;\\1&raquo;', str_replace("\\", " &rarr; ", $Val))."</span>";	
 			if($MakeAdd)
 				@$return.=$GLOBALS['DEP_ADD'][$Val];			
 			return $return;
@@ -354,9 +322,6 @@ abstract class Staff
 			$num++;
 		if(! $GLOBALS['HIDE_CELL_PHONE_FIELD'])
 			$num++;
-		if(! $GLOBALS['HIDE_ROOM_NUMBER'])
-			$num++;
-
 
 		if(empty($_COOKIE['dn']) && $GLOBALS['ENABLE_DANGEROUS_AUTH'])
 			$num++;
@@ -405,22 +370,11 @@ abstract class Staff
 		else
 			echo "<td>".self::highlightSearchResult(self::makeTitle($Staff[$GLOBALS['LDAP_TITLE_FIELD']][$key]), $Vars['search_str'])."</td>"; //Выводим должность
 
-		if($Vars['locked_date'])
-			echo "<td>".Time::modifyDateFormat(self::makeTitle($Staff[$GLOBALS['LDAP_CHANGED_DATE_FIELD']][$key]), $GLOBALS['LDAP_CHANGED_DATE_FORMAT'], "yyyy-mm-dd")."</td>"; //Выводим должность
-
-
 		if(empty($Vars['search_str'])) //Если не велся поиск, то не подсвечивавем результаты
 			echo "<td>".self::makeMailUrl($Staff[$GLOBALS['LDAP_MAIL_FIELD']][$key])."</td>"; //Выводим почту
 		else
 			echo "<td>".self::highlightSearchResult(self::makeMailUrl($Staff[$GLOBALS['LDAP_MAIL_FIELD']][$key]), $Vars['search_str'])."</td>"; 
 
-		if(!$GLOBALS['HIDE_ROOM_NUMBER'])
-			{
-			if(empty($Vars['search_str'])) //Если не велся поиск, то не подсвечивавем результаты	
-				echo "<td>".self::makePlainText($Staff[$GLOBALS['LDAP_ROOM_NUMBER_FIELD']][$key])."</td>"; //Выводим сотовый
-			else
-				echo "<td>".self::highlightSearchResult(self::makePlainText($Staff[$GLOBALS['LDAP_ROOM_NUMBER_FIELD']][$key]), $Vars['search_str'])."</td>"; //Делаем ссылку на полную информацию о сотруднике
-			}
 
 		echo "<td><".$tag.">".self::makeInternalPhone($Staff[$GLOBALS['LDAP_INTERNAL_PHONE_FIELD']][$key])."</".$tag."></td>"; //Выводим внутренний
 		if(!$GLOBALS['HIDE_CITY_PHONE_FIELD'])
@@ -718,3 +672,5 @@ abstract class Alphabet
 		echo "</fieldset>";
 		}
 	}
+
+?>

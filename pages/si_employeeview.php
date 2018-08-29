@@ -34,12 +34,8 @@ if($USE_DISPLAY_NAME)
 else
 	$Name=$ldap->getValue($dn, "name");
 
-
-$control=$ldap->getValue($dn, "useraccountcontrol");
-$LockedCssClass= ((($control & 2)==2)||(($control & 2) == 16))?"locked":"";
-
-$FIO=preg_replace("/^([ёA-zА-я-]+)[\s]{1}([ёA-zА-я-]+[\s]{1}[ёA-zА-я-]+)$/u", "<div class=\"surname_head ".$LockedCssClass."\">$1</div><div class=\"name ".$LockedCssClass."\">$2</div>", $Name);
-$FIO=preg_replace("/^([ёA-zА-я-]+[\s]{1}[ёA-zА-я-]{1}.)[\s]{1}([ёA-zА-я-]+)$/u", "<div class=\"surname_head ".$LockedCssClass."\">$2</div><div class=\"name ".$LockedCssClass."\">$1</div>", $FIO);
+$FIO=preg_replace("/^([ёA-zA-я-]+)[\s]{1}([ёA-zA-я-]+[\s]{1}[ёA-zA-я-]+)$/", "<div class=\"surname_head\">$1</div><div class=\"name\">$2</div>", $Name);
+$FIO=preg_replace("/^([ёA-zA-я-]+[\s]{1}[ёA-zA-я-]{1}.)[\s]{1}([ёA-zA-я-]+)$/", "<div class=\"surname_head\">$2</div><div class=\"name\">$1</div>", $FIO);
 
 echo $FIO;
 
@@ -49,7 +45,7 @@ if($SHOW_EVALUATION_PERIOD_MESSAGE && $LDAP_CREATED_DATE_FIELD)
 	$CreatedUnixTime=Time::getTimeOfDMYHI($Created, $LDAP_CREATED_DATE_FORMAT);
 	$NumWorkDays=round((Time::getOnlyDatePartFromTime(time())-Time::getOnlyDatePartFromTime($CreatedUnixTime))/(24*60*60));
 	if($NumWorkDays<=$EVALUATION_PERIOD)
-		echo "<h6 class=\"alarm\">Новый сотрудник</h6> &mdash; <small>работает в компании <big>".$L->ending($NumWorkDays, 'день', 'дня', 'дней')."</big></small>";
+		echo "<h6 class=\"alarm\">Новый сотрудник</h6> &mdash; <small>работает в компании <strong>".$L->ending($NumWorkDays, 'день', 'дня', 'дней')."</strong></small>";
 	}
 
 $Department=$ldap->getValue($dn, $LDAP_DEPARTMENT_FIELD);
@@ -79,11 +75,18 @@ else
 	{
 	$tag="span";
 	}
+	
+if ($SHOW_COMPUTER_FIELD)
+{
+	$www = $ldap->getValue($dn, $LDAP_COMPUTER_FIELD);
+	if(($www) != null)
+		echo "<div class=\"surname_head\"><h6>".$L->l('computer').":</h6> <a href=\"".Staff::makeComputerName($www)."\"/>".$www."</a></div>";
+}
 
 if(!$HIDE_CITY_PHONE_FIELD)
 	echo "<div class=\"phone\"><h6>".$L->l('city_phone').":</h6> <".$tag.">".Staff::makeCityPhone($ldap->getValue($dn, $LDAP_CITY_PHONE_FIELD))."</".$tag."></div>";
 
-echo "<div class=\"otherphone\"><h6>".$L->l('intrenal_phone').":</h6> <".$tag.">".Staff::makeInternalPhone($ldap->getValue($dn, $LDAP_INTERNAL_PHONE_FIELD))."</".$tag."></div>";
+echo "<div class=\"otherphone\"><h6>".$L->l('intrenal_phone')."</h6> <".$tag.">".Staff::makeInternalPhone($ldap->getValue($dn, $LDAP_INTERNAL_PHONE_FIELD))."</".$tag."></div>";
 
 if(!$HIDE_CELL_PHONE_FIELD)
 	echo "<div class=\"otherphone\"><h6>".$L->l('cell_phone').":</h6> ".Staff::makeCellPhone($ldap->getValue($dn, $LDAP_CELL_PHONE_FIELD))."</div>";
@@ -91,12 +94,7 @@ if(!$HIDE_CELL_PHONE_FIELD)
 if($HomePhone=$ldap->getValue($dn, $LDAP_HOMEPHONE_FIELD))
 	echo "<div class=\"otherphone\"><h6>".$L->l('home_phone').":</h6> ".Staff::makeHomePhone($HomePhone)."</div>";
 
-if(!$HIDE_ROOM_NUMBER)
-	echo "<div class=\"otherphone\"><h6>".$L->l('room_number').":</h6> ".Staff::makePlainText($ldap->getValue($dn, $LDAP_ROOM_NUMBER_FIELD))."</div>";
-
 echo "<div class=\"email\"><h6>E-mail:</h6> ".Staff::makeMailUrl($ldap->getValue($dn, $LDAP_MAIL_FIELD))."</div>";
-
-
 
 $StDate=$ldap->getValue($dn, $LDAP_ST_DATE_VACATION_FIELD);
 $EndDate=$ldap->getValue($dn, $LDAP_END_DATE_VACATION_FIELD);
@@ -130,15 +128,10 @@ if($Birth)
 			$Date=explode(".", $Birth);
 		} break;
 		default: $Date=explode(".", $Birth);
-	}
-
-	$Jubilee="";
-	if($SHOW_JUBILEE_INFO)
-		{	
-		if(!((date("Y")-$Date[2])%5)) $Jubilee="<div>".$L->l('round_date')."</div>";
-		if(!((date("Y")-$Date[2])%10)) $Jubilee="<div>".$L->l('jubilee')."</div>";
-		}
-	echo"<div class=\"birthday\"><h6>".$L->l('birthday').":</h6> ".(int) $Date[0]." ".$MONTHS[(int) $Date[1]].". ".@$Jubilee."</div>";	
+	}			
+	if(!((date("Y")-$Date[2])%5)) $Jubilee="<div>".$L->l('round_date')."</div>";
+	if(!((date("Y")-$Date[2])%10)) $Jubilee="<div>".$L->l('jubilee')."</div>";
+		echo"<div class=\"birthday\"><h6>".$L->l('birthday').":</h6> ".(int) $Date[0]." ".$MONTHS[(int) $Date[1]].". ".@$Jubilee."</div>";	
 }
 //-----------------------------------------------------------------------------
 
@@ -175,11 +168,11 @@ else
 $table->addColumn($LDAP_INTERNAL_PHONE_FIELD, $L->l('intrenal_phone'), true);
 $table->addColumn("title", "Должность");
 
-$table->addPregReplace("/^(.*)$/eu", "Staff::makeNameUrlFromDn('\\1')", "ФИО");	
+$table->addPregReplace("/^(.*)$/e", "Staff::makeNameUrlFromDn('\\1')", "ФИО");	
 
-$table->addPregReplace("/^\.\./u", "", "Должность");
-$table->addPregReplace("/^\./u", "", "Должность");
-$table->addPregReplace("/^(.*)$/eu", "Staff::makeInternalPhone('\\1')", $L->l('intrenal_phone'));
+$table->addPregReplace("/^\.\./", "", "Должность");
+$table->addPregReplace("/^\./", "", "Должность");
+$table->addPregReplace("/^(.*)$/e", "Staff::makeInternalPhone('\\1')", $L->l('intrenal_phone'));
 
 echo"<div id=\"people_table\">";
 

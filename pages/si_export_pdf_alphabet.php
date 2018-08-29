@@ -1,5 +1,5 @@
 <?php
-require_once('../libs/MPDF54/mpdf.php');
+require_once('../libs/mpdf/src/mpdf.php');
 require_once('../config.php');
 require_once("../libs/forms.php");
 require_once("../libs/staff.php");

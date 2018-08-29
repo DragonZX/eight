@@ -26,15 +26,11 @@ if($BLOCK_VIS[$menu_marker]['search'])
 	include("./libs/search.php");
 if($BLOCK_VIS[$menu_marker]['profile'])	
 	include("./libs/profile.php");
-
 ?>
-
 </div>
-
 </form>
 
 <?php
-
 $LdapListAttrs = array($LDAP_DISTINGUISHEDNAME_FIELD, $DisplayName,
   		$LDAP_MAIL_FIELD, 
   		$LDAP_INTERNAL_PHONE_FIELD,
@@ -48,9 +44,7 @@ $LdapListAttrs = array($LDAP_DISTINGUISHEDNAME_FIELD, $DisplayName,
   		$LDAP_COMPUTER_FIELD,
   		$LDAP_DEPUTY_FIELD,
   		$LDAP_GUID_FIELD,
-  		$LDAP_USERPRINCIPALNAME_FIELD,
-  		$LDAP_ROOM_NUMBER_FIELD);
-
+  		$LDAP_USERPRINCIPALNAME_FIELD);
 
 // Делаем фильтр для выборки сотрудников
 //-------------------------------------------------------------------------------------------------------------
@@ -63,14 +57,13 @@ if(! empty($Name))
 $Staff=$ldap->getArray($OU,
  	"(&".$SearchFilter." ".$CompanyNameLdapFilter."(".$LDAP_CN_FIELD."=*)".$DIS_USERS_COND.")",
 	$LdapListAttrs,
-  	array($sort_field, array($sort_field =>"ad_def_full_name")), $sort_order);
+  	array($sort_field), $sort_order);
 
 if(is_array($Staff))
 {
 	// Шапка таблицы
 	//-------------------------------------------------------------------------------------------------------------
-	echo "
-		<table class=\"sqltable\" cellpadding=\"4\">";
+	echo "<table class=\"sqltable\" cellpadding=\"4\">";
 
 	$url_vars=array('name' => $Name, 'only_bookmark' => $only_bookmark, 'bookmark_attr' => $bookmark_attr, 'bookmark_name' => $bookmark_name);
 
@@ -101,15 +94,6 @@ if(is_array($Staff))
 													    'url_vars' => $url_vars
 													    ),
 										 ) );	
-	echo Application::getCollTitle($L->l('room_number'), 
-									array(
-										'sort' => array(
-													    'field' => $LDAP_ROOM_NUMBER_FIELD,
-													    'order' => $sort_order,
-													    'sorted_field' => $sort_field,
-													    'url_vars' => $url_vars
-													    ),
-										 ) );	
 	echo Application::getCollTitle($L->l('intrenal_phone'), 
 									array(
 										'sort' => array(
@@ -119,7 +103,6 @@ if(is_array($Staff))
 													    'url_vars' => $url_vars
 													    ),
 										 ) );	
-
 	if(!$HIDE_CITY_PHONE_FIELD)
 		echo Application::getCollTitle($L->l('city_phone'), 
 										array(
@@ -159,7 +142,6 @@ if(is_array($Staff))
 	if(empty($_COOKIE['dn']) && $ENABLE_DANGEROUS_AUTH)
 		echo Application::getCollTitle();
 	//-------------------------------------------------------------------------------------------------------------
-	
 
 	$FavouriteDNs=$ldap->getAttrValue($_COOKIE['dn'], $LDAP_FAVOURITE_USER_FIELD);
 
@@ -189,12 +171,10 @@ if(is_array($Staff))
 			}
 		}
 
-
-
 	$row=0;	// переменная, используемая для нумерации строк таблицы
 	foreach($Staff[$LDAP_DISTINGUISHEDNAME_FIELD] AS $key=>$value)
 	{
-				
+
 		$Vars['row_css']=($row%2) ? "even" : "odd";
 		$Vars['current_login']=$Login;
 		$Vars['display_name']=$DisplayName;
@@ -210,5 +190,3 @@ if(is_array($Staff))
 	}
 	echo"</table>";	
 }
-
-?>

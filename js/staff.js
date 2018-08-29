@@ -1,7 +1,6 @@
 var $j=jQuery.noConflict();
 
 $j(document).ready(function(){
-
 	if(!$j('#people_table table.sqltable tr').length)
 		$j('#people').hide();
 	
@@ -234,23 +233,6 @@ $j(document).ready(function(){
 
 		$j('#send_xmpp_message').css('right', -1*$j('#send_xmpp_message').width()/2-4);
 
-	$j("a.call_via_ip").live('click', function(){
-		//alert($j(this).attr("data-phone-for-ip-call"));
-		var url='./pages/si_aj_call_by_ip_phone.php';
-		var pars='data-phone-for-ip-call='+$j(this).attr("data-phone-for-ip-call")
-		$j.ajax({
-			data: pars,
-			url: url, 
-			type: 'POST',
-			success: function(data, textStatus){
-				//alert('ffffffff');
-				
-				}
-			});
-		return false;
-
-	});
-
 	$j("a.fav_true").live('click', function(){
 		var native_tr=$j(this).parents('tr').first()
 
@@ -269,7 +251,7 @@ $j(document).ready(function(){
 		if(native_tr.hasClass('favourite'))
 			{
 			native_tr.animate({
-				opacity: 0
+				opacity: 0,
 				}, 600, 'swing', function() {
 					native_tr.remove();
 					$j('#'+native_tr.attr('data-parent-id')).find('a.favourite').toggleClass("fav_false fav_true")
@@ -324,7 +306,7 @@ $j(document).ready(function(){
 			 .css('width', native_table.width())
 			 .animate({
 						top: native_tr.offset().top-100, 
-						opacity: 0
+						opacity: 0,
 						}, 300, 'swing', function() {	
 										table.remove()
 										native_table.find('tr:first th').parent().after(tr)

@@ -47,3 +47,5 @@ function to_json(array $data)
         implode(',', $items) .
         ($isArray ? ']' : '}');
 }
+
+?>

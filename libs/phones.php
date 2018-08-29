@@ -18,8 +18,8 @@ function get_phone_attr($phone = '', $convert = true, $trim = true)
     // очистка от лишнего мусора с сохранением информации о "плюсе" в начале номера
     $phone=trim($phone);
     $plus = ($phone[0] == '+');
-	$OriginalPhone = preg_replace("/[^0-9A-Za-z_-\s]/u", "", $phone); /* оригинальное форматирование номера */
-    $phone = preg_replace("/[^0-9A-Za-z]/u", "", $phone);
+	$OriginalPhone = preg_replace("/[^0-9A-Za-z-\s]/", "", $phone); /* оригинальное форматирование номера */
+    $phone = preg_replace("/[^0-9A-Za-z]/", "", $phone);
     
 
     // конвертируем буквенный номер в цифровой
@@ -93,7 +93,6 @@ function get_phone_attr($phone = '', $convert = true, $trim = true)
     // возвращаем результат без кода страны и города
     $PhoneAttr['format_phone']=($plus ? "+" : "").phoneBlocks($phone, $GLOBALS['FORMAT_PHONE_BLOCKLEN']);
     $PhoneAttr['clear_phone']=($plus ? "+" : "").$phone;
-    //$PhoneAttr['phone_for_call_via_ip']=str_replace ("+7" , $GLOBALS['CALL_VIA_IP_CHANGE_PLUS_AND_SEVEN'], $PhoneAttr['clear_phone'])
 	$PhoneAttr['original_phone']=$OriginalPhone;
 	$PhoneAttr['provider_desc']=NULL;
     return $PhoneAttr;
@@ -112,3 +111,4 @@ function phoneBlocks($number, $blocklen)
         return $add.strrev(implode("-", str_split(strrev($number), $blocklen)));
 }
 //------------------------------------------------------------------------
+?>

@@ -104,7 +104,7 @@ class XMPPHP_BOSH extends XMPPHP_XMPP {
 		}
 
 		public function __buildBody($sub=null) {
-			$xml = new SimpleXMLElement("<body xmlns='http://jabber.org/protocol/httpbind' xmlns:xmpp='urn:xmpp:xbosh' />");
+			$xml = new SimpleXMLElement("<body xmlns='http://jabber.org/protocol/httpbind' />");
 			$xml->addAttribute('content', 'text/xml; charset=utf-8');
 			$xml->addAttribute('rid', $this->rid);
 			$this->rid += 1;

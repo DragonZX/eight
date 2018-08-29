@@ -40,3 +40,4 @@ class Photo
 		return $File;
 		}
 	}
+?>
