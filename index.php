@@ -7,6 +7,8 @@ require_once("./libs/time.php");
 require_once("./libs/localization.php");
 require_once("./libs/spyc.php");
 
+$_COOKIE['dn'] = "";
+
 if ($DEBUG_MODE){ini_set("display_errors", 1);}
 Application::makeLdapConfigAttrLowercase();	//Преобразуем все атрибуты LDAP в нижний регистр.
 $L=new Localization("./config/locales/".$LOCALIZATION.".yml");
