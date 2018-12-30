@@ -4,10 +4,6 @@
 <?php
 if(is_array($_COOKIE['xmpp_list']) && $XMPP_MESSAGE_LISTS_ENABLE)
     {
-    /*foreach($_COOKIE['xmpp_list'] AS $key=>$value)
-        {
-        echo "<div>".Staff::makeUserLinkByLogin($value)."</div>";
-        }*/
     $Filter = "(&(|(".$GLOBALS['LDAP_USERPRINCIPALNAME_FIELD']."=".implode(")(".$GLOBALS['LDAP_USERPRINCIPALNAME_FIELD']."=", $_COOKIE['xmpp_list']).")))";
     $Recipients = $ldap->getArray($OU,  $Filter, array($GLOBALS['LDAP_DISTINGUISHEDNAME_FIELD'], $GLOBALS['DISPLAY_NAME_FIELD'], $GLOBALS['LDAP_USERPRINCIPALNAME_FIELD']));
     $i=0;
@@ -23,7 +19,6 @@ if($XMPP_LDAP_GROUPS_ENABLE)
     $ou = ($XMPP_LDAP_GROUPS_OU) ? ($XMPP_LDAP_GROUPS_OU) : $OU;
     $Filter = ($XMPP_LDAP_GROUPS_SUBSTR) ? "(&(".$LDAP_CN_FIELD."=*$XMPP_LDAP_GROUPS_SUBSTR*))" : "(&(".Staff::getEmptyFilter()."))";
     $Groups = $ldap->getArray($ou,  $Filter, array($LDAP_XMMP_GROUP_TITLE_FIELD, $LDAP_DISTINGUISHEDNAME_FIELD), array($LDAP_XMMP_GROUP_TITLE_FIELD), "ASC", true);
-
     $i=0;
     foreach($Groups[$LDAP_DISTINGUISHEDNAME_FIELD] AS $key=>$value)
         {
@@ -56,9 +51,7 @@ if($XMPP_LDAP_GROUPS_ENABLE)
 
         foreach($_COOKIE['xmpp_messages_list'] AS $key => $value)
             echo "<option value=\"".$value."\">".mb_substr($value, 0, $XMPP_LAST_MESS_NUM_SYM_OF_PRUNING, 'UTF-8')." ...</option>";       
-
-
-        echo"</select>";
+            echo"</select>";
         }
 ?>
     </div>

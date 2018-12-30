@@ -13,9 +13,8 @@ if ($DEBUG_MODE){ini_set("display_errors", 1);}
 Application::makeLdapConfigAttrLowercase();	//Преобразуем все атрибуты LDAP в нижний регистр.
 $L=new Localization("./config/locales/".$LOCALIZATION.".yml");
 
-//Database
-//----------------------------------------
-$ldap=new LDAP($LDAPServer, $LDAPUser, $LDAPPassword); //Соединяемся с сервером
+//#####Database connection#####
+$ldap=new LDAP($LDAPServer, $LDAPUser, $LDAPPassword);
 //----------------------------------------	
 
 setlocale(LC_CTYPE, "ru_RU.".$GLOBALS['CHARSET_APP']); 
@@ -67,7 +66,7 @@ else
 	{
 	if(@$_POST['password']) //Если пользователь ввел пароль в ручную
 		{
-		$LC=ldap_connect($LDAPServer); //Соединяемся с сервером LDAP
+		$LC=ldap_connect($LDAPServer); //Connecting to the LDAP Server
 		if(@ldap_bind($LC, $ldap->getValue($dn, $LDAP_USERPRINCIPALNAME_FIELD), $_POST['password']))	//Проверяем что пользователь может соединится с сервером LDAP используя введенный пароль.
 			{
 			setcookie('dn', $dn, time()+5000*24*60*60, "/"); //Сохраняем куку с distinguishedname, что бы в дальнейшем аутентифицировать пользователя по куке.

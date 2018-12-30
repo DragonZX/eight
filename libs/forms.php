@@ -31,8 +31,7 @@ class LDAPTable
 	private $Attributes=array();
 	private $PregReplace=array();
 	private $LogicReplace=array();
-	
-	private $Vars=array();	
+	private $Vars=array();
 	public 	$Href;
 	public 	$SortColumn;
 	public 	$SortType;
@@ -54,8 +53,8 @@ class LDAPTable
 		$this->LC=ldap_connect($Server);
 		ldap_set_option($this->LC, LDAP_OPT_PROTOCOL_VERSION, 3); 
 		ldap_set_option($this->LC, LDAP_OPT_REFERRALS, 0); 
-		
-		$LB=ldap_bind($this->LC, $User, $Password); 
+
+		$LB=ldap_bind($this->LC, $User, $Password);
 		}
 		
 	
@@ -109,12 +108,10 @@ class LDAPTable
 			{
 			foreach($Conditions as $key=>$value)
 				{
-				//echo"$key<br>";
 				if((is_array($this->Attributes['name']))?(in_array($key, $this->Attributes['name'])):false)
 					{
 					foreach($Conditions[$key] as $key1=>$value1)
 						{
-						//echo"$key1<br><br>";
 						$this->PregReplace[$Title]['conditions'][$j][$key][$key1]=$value1;
 						}					
 					}
@@ -122,9 +119,8 @@ class LDAPTable
 			unset($key, $key1, $value, $value1);
 			}
 		}
-				
-	
-	private function getNameByTitle($Title)
+
+		private function getNameByTitle($Title)
 		{
 		if($array_keys=array_keys($this->Attributes['title'], $Title))
 			return $this->Attributes['name'][$array_keys[0]];
@@ -134,33 +130,24 @@ class LDAPTable
 		
 	private function PregReplace($Title, $Value)
 		{
-		
 		if(is_array(@$this->PregReplace[$Title][pattern]))
 			{	
 			$AK=array_keys($this->PregReplace[$Title][pattern]);
 			$SizeOf=sizeof($AK);
-			
 			for($i=0; $i<$SizeOf; $i++)
 				{
-				
 				if($this->PregReplace[$Title]['apply'][$i])
 					$Value=preg_replace($this->PregReplace[$Title][pattern][$i], $this->PregReplace[$Title][replacement][$i], $Value, $this->PregReplace[$Title][limit][$i]);
-
 				}
-				
 			}
-
 		return $Value;
 		}		
 		
 	
-	//Печатает шапку таблицы
+	//Print table heading
 	private function printHead()
 		{
-		//$ADAttributes=array_values($this->Attributes[name]);
 		$SizeOf=sizeof($this->Attributes['name']);
-
-		
 		echo"<tr>";
 		if($this->Numbering)
 			echo"<th><div>№</div></th>";
@@ -185,7 +172,6 @@ class LDAPTable
 							@$Href=$Href."&".$this->Vars[name][$AK[$p]]."=".$this->Vars[value][$AK[$p]];
 							}
 						}
-
 					echo"<a class=\"".(($this->SortColumn==@$this->Attributes[title][$i])?$this->SortType:"")."\" href=\"".$Href."&".$this->UI."sortcolumn=".@$this->Attributes[title][$i]."&".$this->UI."sorttype=".(($this->SortType=="ASC")?"DESC":"ASC")."\">";
 					echo @$this->Attributes[title][$i];
 					echo"</a>";
@@ -197,7 +183,6 @@ class LDAPTable
 				echo"</th>";
 				}
 			}
-			
 		echo"</tr>";
 		}	
 		
@@ -211,23 +196,17 @@ class LDAPTable
 			if(strpos($V, ","))
 				$ADAttributes=array_merge($ADAttributes, str_replace(" ", "", explode(",", $V)));
 			}
-		
 		@$SizeOf=sizeof($this->Attributes[name]);
-		
-		
-		$LS=ldap_search($this->LC, $BaseDN, $Filter, $ADAttributes); 
+		$LS=ldap_search($this->LC, $BaseDN, $Filter, $ADAttributes);
 
-		//ldap_sort($this->LC, $LS, "name");
-		 
 		if($Entries=ldap_get_entries($this->LC, $LS)) 
 			{ 
 			echo"<table class='sqltable' cellpadding='4'>";
 
 			if($Entries['count']&&$this->Head)
 				{self::printHead();}
-				
-			//Сортировка
-			//-----------------------------------------------------------------------------
+
+//###############SORT BY###############
 			if($this->SortColumn)
 				{
 				$SortName=self::getNameByTitle($this->SortColumn);
@@ -296,11 +275,8 @@ class LDAPTable
 					if($this->SortType=="DESC"){$AS=array_reverse($AS);}
 					}
 				}			
-			//-----------------------------------------------------------------------------
-			
-	
-			
-			for($i=0; $i<$Entries['count']; $i++) 
+//###############END SORT BY###############
+			for($i=0; $i<$Entries['count']; $i++)
 				{ 
 				$n=$i+1;
 				if($n%2) {$CssClass='even';}
@@ -420,8 +396,7 @@ class LDAPTable
 			}
 		}
 	}
-	
-	
+
 class LDAP
 	{
 	private $LC; 
@@ -643,9 +618,8 @@ class LDAP
 		$SizeOf=sizeof($ADAttributes);
 
 		if($Entries=self::getEntriesWithoutSizeLimit($BaseDN, $Filter, $ADAttributes, $WithoutSizeLimit)) 
-			{ 	
-			//Сортировка
-			//-----------------------------------------------------------------------------
+			{
+//###############SORT BY###############
 			if(is_array($Sort))
 				{			
 				for($i=0, $d=0; $i<$Entries['count']; $i++) 
