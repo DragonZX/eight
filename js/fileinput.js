@@ -12,14 +12,14 @@ function HandleChanges(id, ContainerID)
 	 
 	    
 	reWin = /.*\\(.*)/;
-	var fileTitle = file.replace(reWin, "$1"); //выдираем название файла для w*s
+	var fileTitle = file.replace(reWin, "$1"); //РІС‹РґРёСЂР°РµРј РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° РґР»СЏ w*s
 	reUnix = /.*\/(.*)/;
-	fileTitle = fileTitle.replace(reUnix, "$1"); //выдираем название для *nix
+	fileTitle = fileTitle.replace(reUnix, "$1"); //РІС‹РґРёСЂР°РµРј РЅР°Р·РІР°РЅРёРµ РґР»СЏ *nix
 	    
 	fileName = document.getElementById('name'+id);
 	fileName.innerHTML = fileTitle;
 	var RegExExt =/.*\.(.*)/;
-	var ext = fileTitle.replace(RegExExt, "$1");//и его расширение
+	var ext = fileTitle.replace(RegExExt, "$1");//Рё РµРіРѕ СЂР°СЃС€РёСЂРµРЅРёРµ
 	    
 	var pos;
 	if (ext)
@@ -95,13 +95,13 @@ function AddInput(ContainerID)
 	    bb = document.createElement('div');
 	    bb.setAttribute('id','bb' + id);
 	    bb.className = 'fakeButton';
-		bb.innerHTML='<a href=\'\'>Найти файл</a>';
+		bb.innerHTML='<a href=\'\'>РќР°Р№С‚Рё С„Р°Р№Р»</a>';
 	    bl = document.createElement('div');
 	    bl.setAttribute('id','bl' + id);
 	    bl.className = 'blocker';
 	    deleteButton = document.createElement('div');
 		deleteButton.setAttribute('id','db' + id);
-		deleteButton.setAttribute('title', 'Убрать из списка');
+		deleteButton.setAttribute('title', 'РЈР±СЂР°С‚СЊ РёР· СЃРїРёСЃРєР°');
 	    deleteButton.className = 'minus';
 	    deleteButton.onclick = function() { DeleteCustomInput(id, ContainerID) };	
 		
@@ -143,13 +143,13 @@ function MakeActive(id)
 	{
 	/*bb = document.getElementById('bb'+id);
 	bb.style.backgroundPosition = '0 -21px';*/
-	bb.innerHTML='<a href=\'\' style=\'color:#CC0000;\'>Найти файл</a>';
+	bb.innerHTML='<a href=\'\' style=\'color:#CC0000;\'>РќР°Р№С‚Рё С„Р°Р№Р»</a>';
 	};
 function UnMakeActive(id)
 	{
 	/*bb = document.getElementById('bb'+id);
 	bb.style.backgroundPosition = '0 0';*/
-	bb.innerHTML='<a href=\'\'>Найти файл</a>';
+	bb.innerHTML='<a href=\'\'>РќР°Р№С‚Рё С„Р°Р№Р»</a>';
 	};
 
 /*
