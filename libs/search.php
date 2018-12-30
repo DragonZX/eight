@@ -10,8 +10,8 @@ $CurrentVars['name']=$Name;
 <legend><?php echo $L->l("employee_search"); ?></legend>
 
 <div id="search">
-<input type="text" id="Name" name="name" value="<?php echo $Name ?>"  />
-<input type="image" src="./skins/<?php echo $CURRENT_SKIN; ?>/images/find.png"  />
+<input type="text" id="Name" name="name" alt="name" value="<?php echo $Name ?>"  />
+<input type="image" alt="image" src="./skins/<?php echo $CURRENT_SKIN; ?>/images/find.png"  />
 <input type="hidden" name="bookmark_name" value="<?php echo $BOOKMARK_NAME ?>" />
 <input type="hidden" name="bookmark_attr" value="<?php echo $bookmark_attr ?>" />
 <input type="hidden" name="form_sent" value="1" />
