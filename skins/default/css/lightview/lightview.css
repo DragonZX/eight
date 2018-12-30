@@ -43,7 +43,7 @@
  display: inline;
  position: relative;
  float: left;
- z-index: none;
+ z-index: auto;
 }
 
 .lv_skin * {
@@ -434,9 +434,7 @@
   float: left;
 }
 .lv_slider .lv_icon {
-  background: url('skins/light/sprite.png');
-  background-repeat: no-repeat;
-  /* IE6 */
+  background: url('skins/light/sprite.png') no-repeat;
   position: absolute; 
   top: 0;
   left: 2px;
@@ -497,8 +495,7 @@
   overflow: hidden; /* IE6 */
 }
 .lv_thumbnail_image {
-  position: relative;
-  background: red;
+  position: relative;;
   background: #161616;
   width: 80px;
   height: 80px;
@@ -529,7 +526,6 @@
   background-position: 99px 99px;
   background-repeat: no-repeat;
   display: block !important;
-  display: none; /* IE6 */
 }
 
 .lv_thumbnail_image_spinner_overlay {
@@ -602,8 +598,7 @@
 .lv_controls_top_skin_light .lv_icon,
 .lv_controls_top_close_skin_light .lv_controls_top_close_button,
 .lv_thumbnails_skin_light .lv_thumbnail_icon {
-  background-image: url('skins/light/sprite.png') !important;  
-  background-image: url('skins/light/sprite_ie_lt_7.png'); /* IE < 7 */
+  background-image: url('skins/light/sprite.png') !important;
 }
 
 
@@ -639,7 +634,6 @@
 .lv_controls_top_close_skin_dark .lv_controls_top_close_button,
 .lv_thumbnails_skin_dark .lv_thumbnail_icon {
   background-image: url('skins/dark/sprite.png') !important;
-  background-image: url('skins/dark/sprite_ie_lt_7.png'); /* IE < 7 */
 }
 
 /* close button */
@@ -680,7 +674,6 @@
 .lv_controls_top_close_skin_mac .lv_controls_top_close_button,
 .lv_thumbnails_skin_mac .lv_thumbnail_icon {
   background-image: url('skins/mac/sprite.png') !important;
-  background-image: url('skins/mac/sprite_ie_lt_7.png'); IE < 7
 }
 
 /* close button */
