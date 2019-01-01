@@ -1,5 +1,7 @@
 <?php
-require_once("./config.php");
+//need to check php-ldap php-mbstring
+if (!file_exists("./config.php")){die(_("Coudn't find configuration file"));};
+require_once("./config.php") ;
 require_once("./libs/forms.php");
 require_once("./libs/staff.php");
 require_once("./libs/phones.php");

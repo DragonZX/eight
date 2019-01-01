@@ -411,7 +411,7 @@ class LDAP
 		$this->SizePageDividerAttr=$GLOBALS['LDAP_SIZE_LIMIT_PAGE_DIVIDER_FIELD'];
 		$this->SizeLimitCompatibility=$GLOBALS['LDAP_SIZE_LIMIT_COMPATIBILITY'];
 
-		$LB=ldap_bind($this->LC, $User, $Password); 
+		$LB=ldap_bind($this->LC, $User, $Password) or die(_("Coudn't connect to LDAP"));
 		}	
 	
 	function ldap_modify($DN, $WhatChange, $NotRecode=false)
