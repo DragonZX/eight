@@ -110,5 +110,3 @@ function phoneBlocks($number, $blocklen)
         }
         return $add.strrev(implode("-", str_split(strrev($number), $blocklen)));
 }
-//------------------------------------------------------------------------
-?>

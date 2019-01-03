@@ -87,4 +87,3 @@ if(is_array($Staff))
 	}
 	echo"</table>";	
 }
-?>

@@ -2,10 +2,8 @@
 
 if($Access)
 	{
-//********************************************************************************************************************************************************	
 	echo "<form method=\"POST\" action=\"".$_SERVER['PHP_SELF']."?menu_marker=si_staffedit\" >";
-		
-	//-------------------------------------------------------------------------------------------------
+
 	@$Name=($_POST['name'])?$_POST['name']:(($_GET['name'])?$_GET['name']:$SEARCH_DEFAULT_VALUE);
 	$BadSymbols=array("[", "]", "{", "}", "<", ">", "(", ")", ".", ",", ";", ":", "!", "?", "&", "#", "@", "%", "^", "+", "|", "\\", "/", "~", "$");
 	$Name=str_replace($BadSymbols, "", $Name);
@@ -13,10 +11,8 @@ if($Access)
 
 	@$_GET['sortcolumn']=($_GET['sortcolumn'])?$_GET['sortcolumn']:"ФИО";
 	@$_GET['sorttype']=($_GET['sorttype'])?$_GET['sorttype']:"ASC";
-	//-------------------------------------------------------------------------------------------------
 
 	//Обработка формы
-	//-------------------------------------------------------------------------------------------------
 	if(@$_GET['FormSend'])
 		{
 		$ldap=new LDAP($LDAPServer, $LDAP_WRITE_USER, $LDAP_WRITE_PASSWORD);
@@ -80,12 +76,10 @@ if($Access)
 		$ldap->ldap_modify($dn, $info);
 			
 		}
-	//-------------------------------------------------------------------------------------------------
 
 	include("./libs/search.php");
 
 	//Кто вы?
-	//-------------------------------------------------------------------------------------------------
 	if($_COOKIE['dn'])
 		{
 		if($WhoAreYou=$ldap->getValue($_COOKIE['dn'], "name"))
@@ -102,9 +96,9 @@ if($Access)
 			echo"</ul></fieldset>";	
 			}
 		}
-	//-------------------------------------------------------------------------------------------------
+
 	echo "</form>";
-//********************************************************************************************************************************************************	
+
 
 	if($Name)
 		{				
@@ -139,7 +133,6 @@ if($Access)
 
 		
 	//ФИО
-	//-------------------------------------------------------------------------------------------------	
 	if($USE_DISPLAY_NAME)
 		{
 		$table->addPregReplace("/([ёA-zA-я-]+)[\s]{1}([ёA-zA-я-]+[\s]{1}[ёA-zA-я-]+)(CN.*)/", "<a href=\"newwin.php?menu_marker=si_employeeview&dn=\\3\" data-lightview-type=\"iframe\" data-lightview-options=\"width: '80%', height: '100%', keyboard: {esc: true}, skin: 'light'\" class=\"lightview\"><div class='surname'>\\1</div>\\2</a>", "ФИО", 1, $Conditions1);
@@ -166,13 +159,9 @@ if($Access)
 	$table->addPregReplace("/([>]{1}[А-я\s.]*)(".strtolower(preg_quote($Name)).")([А-я\s.]*[<]{1})/", "\\1<u class='found'>\\2</u>\\3", "ФИО", 1, $Conditions1);
 	$table->addPregReplace("/([>]{1}[А-я\s.]*)(".ucfirst(preg_quote($Name)).")([А-я\s.]*[<]{1})/", "\\1<u class='found'>\\2</u>\\3", "ФИО", 1, $Conditions1);		
 	$table->addPregReplace("/___/", "", "ФИО", 1, $Conditions1);
-	
-	//-------------------------------------------------------------------------------------------------			
-	
-	//-------------------------------------------------------------------------------------------------	
+
 
 	//Д.Р.
-	//-------------------------------------------------------------------------------------------------	
 	switch($BIRTH_DATE_FORMAT)
 		{
 		case 'yyyy-mm-dd':
@@ -192,12 +181,8 @@ if($Access)
 		else
 			$table->addPregReplace("/([\w\W]{1,})/", "<input class=\"text telephonenumber\" name=\"Birthday\"  id=\"Birthday\" value=\"\\1\"/>", "Д.Р.", 1, $Conditions2);		
 		$table->addPregReplace("/value=\"x\"/", "value=\"\"", "Д.Р.", 1, $Conditions2);	
-	//-------------------------------------------------------------------------------------------------		
-		
-	
-		
+
 	//E-mail
-	//-------------------------------------------------------------------------------------------------		
 		$table->addPregReplace("/([A-z0-9_\.\-]{1,20}@[A-z0-9\.\-]{1,20}\.[A-z]{2,4})/", "<a href='mailto:\\1'>\\1</a>", "E-mail", 1, $Conditions1);
 		$table->addPregReplace("/^$/", "x", "E-mail");	
 		if(@$Errors[$LDAP_MAIL_FIELD])
@@ -212,10 +197,8 @@ if($Access)
 				$table->addPregReplace("/([\w\W]{1,})/", "<form action=\"".$_SERVER['PHP_SELF']."?menu_marker=si_staffedit&dn=".$dn."&FormSend=1&name=".$Name."\" method=\"POST\"><input type=\"hidden\" name=\"bookmark_attr\" value=\"".$bookmark_attr."\" /><input type=\"hidden\" name=\"bookmark_name\" value=\"".$BOOKMARK_NAME."\" />".(($_GET['form_sent']||$_POST['form_sent'])?"<input type=\"hidden\" name=\"form_sent\" value=\"1\" />":"")."<input type=\"hidden\" name=\"only_bookmark\" value=\"".$only_bookmark."\" /><input class=\"text mail\" name=\"".$LDAP_MAIL_FIELD."\" value=\"\\1\"/>", "E-mail", 1, $Conditions2);
 				
 		$table->addPregReplace("/value=\"x\"/", "value=\"\"", "E-mail", 1, $Conditions2);
-	//-------------------------------------------------------------------------------------------------	
 
 	//Внутренний
-	//-------------------------------------------------------------------------------------------------		
 		$table->addPregReplace("/(".strtolower(preg_quote($Name)).")/", "<u class='found'>\\1</u>", $L->l('intrenal_phone'), 1, $Conditions1);
 		$table->addPregReplace("/^$/", "x", $L->l('intrenal_phone'));
 		if(@$Errors[$LDAP_INTERNAL_PHONE_FIELD])
@@ -223,10 +206,8 @@ if($Access)
 		else
 			$table->addPregReplace("/([\w\W]{1,})/", "<input class=\"text othertelephone\" name=\"".$LDAP_INTERNAL_PHONE_FIELD."\" value=\"\\1\"/>", $L->l('intrenal_phone'), 1, $Conditions2);
 		$table->addPregReplace("/value=\"x\"/", "value=\"\"", $L->l('intrenal_phone'), 1, $Conditions2);
-	//-------------------------------------------------------------------------------------------------
 
 	//Городской
-	//-------------------------------------------------------------------------------------------------		
 		$table->addPregReplace("/^([0-9]{3})([0-9]{3})$/", "\\1-\\2", $L->l('city_phone'), 1, $Conditions1);
 		$table->addPregReplace("/(".preg_quote($Name).")/", "<u class='found'>\\1</u>", $L->l('city_phone'), 1, $Conditions1);
 		$table->addPregReplace("/^$/", "x", $L->l('city_phone'));
@@ -235,10 +216,8 @@ if($Access)
 		else
 			$table->addPregReplace("/([\w\W]{1,})/", "<input class=\"text telephonenumber\" name=\"".$LDAP_CITY_PHONE_FIELD."\" value=\"\\1\"/>", $L->l('city_phone'), 1, $Conditions2);	
 		$table->addPregReplace("/value=\"x\"/", "value=\"\"", $L->l('city_phone'), 1, $Conditions2);
-	//-------------------------------------------------------------------------------------------------	
-		
+
 	//Мобильный
-	//-------------------------------------------------------------------------------------------------		
 		$table->addPregReplace("/(".strtolower(preg_quote($Name)).")/", "<u class='found'>\\1</u>", "Мобильный", 1, $Conditions1);
 		$table->addPregReplace("/^$/", "x", "Мобильный");
 		if(@$Errors[$LDAP_CELL_PHONE_FIELD])
@@ -246,10 +225,8 @@ if($Access)
 		else
 			$table->addPregReplace("/([\w\W]{1,})/", "<input class=\"text mobile\" name=\"".$LDAP_CELL_PHONE_FIELD."\" value=\"\\1\"/>", "Мобильный", 1, $Conditions2);
 		$table->addPregReplace("/value=\"x\"/", "value=\"\"", "Мобильный", 1, $Conditions2);
-	//-------------------------------------------------------------------------------------------------	
 
 	//Должность
-	//-------------------------------------------------------------------------------------------------	
 		$table->addPregReplace("/^\.\./", "", "Должность");
 		$table->addPregReplace("/^\./", "", "Должность");
 		$table->addPregReplace("/(".strtolower(preg_quote($Name)).")/", "<u class='found'>\\1</u>", "Должность", 1, $Conditions1);
@@ -257,33 +234,25 @@ if($Access)
 		$table->addPregReplace("/^$/", "x", "Должность");
 		$table->addPregReplace("/([\w\W]{1,})/", "<textarea class=\"position\" name=\"Title\">\\1</textarea>", "Должность", 1, $Conditions2);
 		$table->addPregReplace("/<textarea class=\"position\" name=\"Title\">x<\/textarea>/", "<textarea class=\"position\" name=\"Title\"></textarea>", "Должность", 1, $Conditions2);
-	//-------------------------------------------------------------------------------------------------	
 
 
 	//Кнопка
-	//-------------------------------------------------------------------------------------------------		
-
 		@$table->addPregReplace("/^(.*)$/", "<a href=\"?menu_marker=si_staffedit&dn=\\1&sortcolumn=".$_GET['sortcolumn']."&sorttype=".$_GET['sorttype']."&name=".$Name."&bookmark_attr=".$bookmark_attr."&bookmark_name=".$BOOKMARK_NAME."&only_bookmark=".$only_bookmark.(($_GET['form_sent']||$_POST['form_sent'])?"&form_sent=1":"")."\"><img border=\"0\" src=\"./skins/".$CURRENT_SKIN."/images/vcard.png\" width=\"48\" height=\"33\" title=\"Редактировать\"/></a>", "Править", 1, $Conditions1);
 		$table->addPregReplace("/^(.*)$/", "<input type=\"image\" src=\"./skins/".$CURRENT_SKIN."/images/vcard_check.png\" width=\"48\" height=\"41\" title=\"Применить изменения\"/><div id=\"IDForScroll\" ></div></form>", "Править", 1, $Conditions2);
-	//-------------------------------------------------------------------------------------------------	
-		
+
 	//Фото
-	//-------------------------------------------------------------------------------------------------		
 		$table->addPregReplace("/^([\w\W]{1,}$)/", "Есть", "Фото", 1);
 		$table->addPregReplace("/^$/", "x", "Фото", 1);	
 		$Conditions3[$LDAP_OBJECTCLASS_FIELD]['=']="user";
 		$Conditions3[$LDAP_DISTINGUISHEDNAME_FIELD]['=']=$dn;
 		$table->addPregReplace("/^Есть$/", "<iframe allowtransparency=\"true\" src=\"./newwin.php?menu_marker=si_staff_add_photo&ButTitle=Изменить&dn=".$dn."\" frameborder=\"0\" scrolling=\"no\" width=\"70\" height=\"40\"></iframe>", "Фото", 1, $Conditions3);
 		$table->addPregReplace("/^x$/", "<iframe allowtransparency=\"true\" src=\"./newwin.php?menu_marker=si_staff_add_photo&ButTitle=Добавить&dn=".$dn."\" frameborder=\"0\" scrolling=\"no\" width=\"70\" height=\"40\"></iframe>", "Фото", 1, $Conditions3);
-	//-------------------------------------------------------------------------------------------------	
 
 		$cn=($Name=="*")?"*":"*".$Name."*";	
 
 	// Делаем фильтр для выборки сотрудников нужных компаний
-	//-------------------------------------------------------------------------------------------------------------
 		$CompanyNameLdapFilter=Application::getCompanyNameLdapFilter();
-	//-------------------------------------------------------------------------------------------------------------	
-		
+
 		$table->printTable($OU, "(&".$CompanyNameLdapFilter."(|(".$LDAP_OBJECTCLASS_FIELD."=user)(".$LDAP_OBJECTCLASS_FIELD."=contact))(|(".$LDAP_CN_FIELD."=".$cn.")(".$LDAP_MAIL_FIELD."=".$cn.")(".$LDAP_INTERNAL_PHONE_FIELD."=".$cn.")(".$LDAP_CITY_PHONE_FIELD."=".$cn.")(".$LDAP_CELL_PHONE_FIELD."=".$cn.")(".$LDAP_TITLE_FIELD."=".$cn.")(".$LDAP_DEPARTMENT_FIELD."=".$cn."))".$DIS_USERS_COND.")");
 		
 		if($dn)

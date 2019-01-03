@@ -86,4 +86,3 @@ if($XMPP_ENABLE)
             echo "{\"success\": \"true\", \"message\": \"".$e->getMessage()."\"}";
             }
     }
-?>

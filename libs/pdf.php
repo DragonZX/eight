@@ -18,4 +18,3 @@ abstract Class PDF
 		</table>";
 	}
 }
-?>

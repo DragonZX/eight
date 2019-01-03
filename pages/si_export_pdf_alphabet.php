@@ -97,4 +97,3 @@ if($ENABLE_PDF_EXPORT)
 	$mpdf->WriteHTML($html, 2);
 	$mpdf->Output('pdf_alphabet.pdf', 'I');
 	}
-?>

@@ -6,12 +6,10 @@ $time=time();
 @$_GET['sorttype']=($_GET['sorttype'])?$_GET['sorttype']:"ASC";
 
 // Определяем какой атрибут будем использовать в качестве формирования ФИО сотрудника
-//-------------------------------------------------------------------------------------------------------------
 if($USE_DISPLAY_NAME)
 	$DisplayName=$DISPLAY_NAME_FIELD;
 else
 	$DisplayName=$LDAP_NAME_FIELD;
-//-------------------------------------------------------------------------------------------------------------
 
 $sort_order=(! empty($_GET['sort_order'])) ? $_GET['sort_order'] : 'asc';
 $sort_field=(! empty($_GET['sort_field'])) ? $_GET['sort_field'] : $DisplayName;
@@ -47,12 +45,10 @@ $LdapListAttrs = array($LDAP_DISTINGUISHEDNAME_FIELD, $DisplayName,
   		$LDAP_USERPRINCIPALNAME_FIELD);
 
 // Делаем фильтр для выборки сотрудников
-//-------------------------------------------------------------------------------------------------------------
 $CompanyNameLdapFilter=Application::getCompanyNameLdapFilter();
 if(! empty($Name))
 	$SearchFilter=Application::getSearchFilter($Name, $LdapListAttrs);
 
-//-------------------------------------------------------------------------------------------------------------	
 //Получаем правильно отсортированных сотрудников с необходимыми атрибутами LDAP, учитывая настроки сортировки из конфига
 $Staff=$ldap->getArray($OU,
  	"(&".$SearchFilter." ".$CompanyNameLdapFilter."(".$LDAP_CN_FIELD."=*)".$DIS_USERS_COND.")",
@@ -62,7 +58,6 @@ $Staff=$ldap->getArray($OU,
 if(is_array($Staff))
 {
 	// Шапка таблицы
-	//-------------------------------------------------------------------------------------------------------------
 	echo "<table class=\"sqltable\" cellpadding=\"4\">";
 
 	$url_vars=array('name' => $Name, 'only_bookmark' => $only_bookmark, 'bookmark_attr' => $bookmark_attr, 'bookmark_name' => $bookmark_name);
@@ -141,7 +136,6 @@ if(is_array($Staff))
 
 	if(empty($_COOKIE['dn']) && $ENABLE_DANGEROUS_AUTH)
 		echo Application::getCollTitle();
-	//-------------------------------------------------------------------------------------------------------------
 
 	$FavouriteDNs=$ldap->getAttrValue($_COOKIE['dn'], $LDAP_FAVOURITE_USER_FIELD);
 

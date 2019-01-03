@@ -91,5 +91,3 @@ $CALL_VIA_IP_MAX_RETRY = "0";
 	echo "BYE!";
 	exit();
 	}
-
-?>

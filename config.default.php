@@ -326,5 +326,3 @@ $XMPP_LDAP_GROUPS_SUBSTR = "jbr";
 $LDAP_XMMP_GROUP_TITLE_FIELD = "description";
 
 $LDAP_MEMBER_FIELD = "member";
-
-?>

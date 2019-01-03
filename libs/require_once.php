@@ -11,13 +11,7 @@ Application::makeLdapConfigAttrLowercase();
 $L=new Localization("../config/locales/".$LOCALIZATION.".yml");
 
 //Database
-//----------------------------------------
 $ldap=new LDAP($LDAPServer, $LDAP_WRITE_USER, $LDAP_WRITE_PASSWORD);
-//----------------------------------------	
 
 //Basic Auth
-//----------------------------------------	
 include_once("../auth.php");
-//----------------------------------------	
-
-?>

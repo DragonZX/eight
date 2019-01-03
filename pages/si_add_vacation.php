@@ -37,5 +37,3 @@ if($Valid)
 		echo"{\"success\": \"false\", \"field\": \"vac_from\", \"answer\": \"Не заполнена дата начала отпуска \"}";
 		
 	}
-
-?>

@@ -49,4 +49,3 @@ if($_COOKIE['dn'])
 		echo"</ul></fieldset>";	
 		}
 	}
-?>
