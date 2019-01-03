@@ -74,10 +74,10 @@ abstract class Staff
 		{
 			if(@$GLOBALS['FORMAT_INTERNAL_PHONE'])
 			{		
-				$Val="<a href=\"callto:".$phone_attr['clear_phone']."\" class=\"in_link int_phone\">".$phone_attr['format_phone']."</a>";
+				$Val="<a href=\"tel:".$phone_attr['clear_phone']."\" class=\"in_link int_phone\">".$phone_attr['format_phone']."</a>";
 			}	
 			else
-				$Val="<a href=\"callto:".$Val."\" class=\"in_link int_phone\">".$Val."</a>";
+				$Val="<a href=\"tel:".$Val."\" class=\"in_link int_phone\">".$Val."</a>";
 		}
 		else
 			{
@@ -100,10 +100,10 @@ abstract class Staff
 					$phone_title="title=\"".$phone_attr['provider_desc']."\"";
 				else
 					$phone_title="title=\"\"";
-				$Val="<a href=\"callto:".$phone_attr['clear_phone']."\" class=\"in_link cityphone\" ".$phone_title.">".$phone_attr['format_phone']."</a>";
+				$Val="<a href=\"tel:".$phone_attr['clear_phone']."\" class=\"in_link cityphone\" ".$phone_title.">".$phone_attr['format_phone']."</a>";
 			}
 			else
-				$Val="<a href=\"callto:".$Val."\" class=\"in_link cityphone\">".$Val."</a>";
+				$Val="<a href=\"tel:".$Val."\" class=\"in_link cityphone\">".$Val."</a>";
 		}
 		else
 			{
@@ -123,10 +123,10 @@ abstract class Staff
 			{
 				if($GLOBALS['USE_PHONE_CODES_DESCRIPTION'] AND $phone_attr['provider_desc'])
 					$phone_title="title=\"".$phone_attr['provider_desc']."\"";
-				@$Val="<a href=\"callto:".$phone_attr['clear_phone']."\" class=\"in_link cell_phone\" ".$phone_title.">".$phone_attr['format_phone']."</a>";
+				@$Val="<a href=\"tel:".$phone_attr['clear_phone']."\" class=\"in_link cell_phone\" ".$phone_title.">".$phone_attr['format_phone']."</a>";
 			}
 			else
-				$Val="<a href=\"callto:".$Val."\" class=\"in_link cell_phone\">".$Val."</a>";
+				$Val="<a href=\"tel:".$Val."\" class=\"in_link cell_phone\">".$Val."</a>";
 		}
 		else
 			{
@@ -146,12 +146,12 @@ abstract class Staff
 			if($GLOBALS['FORMAT_HOME_PHONE'])
 			{
 				if($GLOBALS['USE_PHONE_CODES_DESCRIPTION'] AND $phone_attr['provider_desc'])
-					$Val="<span title =\"".$phone_attr['provider_desc']."\"><a href=\"callto:".$phone_attr['clear_phone']."\" class=\"in_link homephone\">".$phone_attr['format_phone']."</a></acronym>";
+					$Val="<span title =\"".$phone_attr['provider_desc']."\"><a href=\"tel:".$phone_attr['clear_phone']."\" class=\"in_link homephone\">".$phone_attr['format_phone']."</a></acronym>";
 				else
-					$Val="<a href=\"callto:".$phone_attr['clear_phone']."\" class=\"in_link homephone\">".$phone_attr['format_phone']."</a>";
+					$Val="<a href=\"tel:".$phone_attr['clear_phone']."\" class=\"in_link homephone\">".$phone_attr['format_phone']."</a>";
 			}
 			else
-				$Val="<a href=\"callto:".$Val."\" class=\"in_link homephone\">".$Val."</a>";
+				$Val="<a href=\"tel:".$Val."\" class=\"in_link homephone\">".$Val."</a>";
 		}
 		else
 			{

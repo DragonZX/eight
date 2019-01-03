@@ -245,15 +245,15 @@ $BLOCK_VIS['si_alph_staff_list']['fast_move']=true;
 $HIDE_STAFF_WITHOUT_PHONES=false; // То же что $PDF_HIDE_STAFF_WITHOUT_PHONES, но для списка сотрудников с разбивкой по отделам.
 $ALPH_ITEM_IN_LINE=35; // Количество букв в одной строке в блоке быстрого перехода, на странице с разбивкой сотрудников по первым буквам фамилии. По умолчанию значение равно «35»
 $DEP_ITEM_IN_COL=3; // Количество отделов в одном столбце в блоке быстрого перехода, на странице с разбивкой сотрудников по отделам. По умолчанию значение равно «3»
-$COPY_RIGHT="<a href=\"http://www.pitin.su\" target=\"NewWindow\">© V. Pitin, 2012 </a>"; // :-)
+$COPY_RIGHT="<a href=\"http://www.pitin.su\" target=\"NewWindow\">&copy; V. Pitin, 2012 </a>"; // :-)
 $COPY_RIGHT="";
 /* 
 $DEP_ADD - Этот атрибут позволяет добавить дополнительную строку в конце названия отдела на странице с разбивкой сотрудников по отделам.
 Вот так, например, можно добавить общий телефон отдела:
-$DEP_ADD['Департамент управления складом\Группа приемки']="<span class=\"add_dep_info\"><a href=\"callto:234-52-23\" class=\"in_link int_phone\">234-52-23</a><span>"; 
+$DEP_ADD['Департамент управления складом\Группа приемки']="<span class=\"add_dep_info\"><a href=\"tel:234-52-23\" class=\"in_link int_phone\">234-52-23</a><span>";
 */
-$DEP_ADD['Департамент управления складом\Группа приемки']="<span class=\"add_dep_info\"><a href=\"callto:222-22-22\" class=\"in_link int_phone\">222-22-22</a><span>";
-$DEP_ADD['Департамент аптечной сети']="<span class=\"add_dep_info\"><a href=\"callto:111-11-11\" class=\"in_link int_phone\">111-11-11</a><span>";
+$DEP_ADD['Департамент управления складом\Группа приемки']="<span class=\"add_dep_info\"><a href=\"tel:222-22-22\" class=\"in_link int_phone\">222-22-22</a><span>";
+$DEP_ADD['Департамент аптечной сети']="<span class=\"add_dep_info\"><a href=\"tel:111-11-11\" class=\"in_link int_phone\">111-11-11</a><span>";
 $ALARM_MESSAGE=""; // Если в параметре что-то есть, то будет выводиться «тревожное» сообщение на всех страницах справочника.
 //----------------------------------------------------------------------------
 
