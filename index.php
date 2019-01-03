@@ -1,4 +1,10 @@
 <?php
+/*
+ *  @author Vladimir Pitin <vladimir@pitin.su> Copyright 2012
+ *  @url https://github.com/tdvsdv/eight
+ *  @author Vitaliy Zhukov <dragonzx@aunited.ru> Copyright 2012
+ *  @url https://github.com/DragonZX/eight
+ */
 //need to check php-ldap php-mbstring
 if (!file_exists("./config.php")){die(_("Coudn't find configuration file"));};
 require_once("./config.php") ;
