@@ -111,7 +111,7 @@ if($_COOKIE['dn'])
 	<link rel="stylesheet" type="text/css" href="./skins/<?php echo $CURRENT_SKIN; ?>/css/lightview/lightview.css"/>
 	<link rel="STYLESHEET" href="./skins/<?php echo $CURRENT_SKIN; ?>/css/general.css" type="text/css" />
 	<link rel="shortcut icon" href="./skins/<?php echo $CURRENT_SKIN; ?>/favicon.ico" type="image/x-icon">
-	<script type="text/javascript" src="./js/jquery-1.8.2.min.js"></script>	
+	<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
 
 
 	<script type="text/javascript" src="./js/prototype.js"></script>
