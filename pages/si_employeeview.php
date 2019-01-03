@@ -25,7 +25,7 @@ echo"<td width=\"1%\">";
 if($Image)
 	echo"<div class=\"photo\"><img src=\"".$Image."\"></div>";	
 else
-	echo"<div class=\"photo\"><img src=\"./skins/".$CURRENT_SKIN."/images/ldap/user.png\"></div>";
+	echo"<div class=\"photo no_photo\"></div>";
 echo"</td>";
 echo"<td>";
 

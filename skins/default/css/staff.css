@@ -424,7 +424,6 @@ span.deputy .surname
 	display: inline;
 	font-weight: normal;
 	}
-
 div.photo
 	{
 	border: 1px solid #D9E6E3;
@@ -433,7 +432,12 @@ div.photo
 	overflow: auto;
 	background-color: #EBF1EC;
 	}	
-	
+div.no_photo
+	{
+	background-image:url("../images/ldap/user.png");
+	width: 300px;
+	height: 300px;
+	}
 .add_dep_info
 	{
 	margin: 0 0 0 30px;
@@ -506,6 +510,13 @@ div.avatar
 	padding: 2px;
 	float: left;
 	margin: 0 5px 0 0;
+	}
+
+div.no_avatar
+	{
+	background: url("../images/user_avatar.png") no-repeat;
+	width: 30px;
+	height: 30px;
 	}
 	
 .next_vac, .prev_vac

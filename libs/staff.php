@@ -297,7 +297,7 @@ abstract class Staff
 		else
 			{
 			if($GLOBALS['SHOW_EMPTY_AVATAR'])
-				return "<div class=\"avatar\"><img src=\"./skins/".$GLOBALS['CURRENT_SKIN']."/images/user_avatar.png\" alt=\"user avatar\" height=\"32\" width=\"32\" /></div>";	
+				return "<div class=\"avatar no_avatar\"></div>";
 			}
 	}
 
