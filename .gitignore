@@ -60,3 +60,4 @@ $RECYCLE.BIN/
 
 # Own configs
 config.php
+vendor
