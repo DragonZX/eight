@@ -60,8 +60,6 @@ $j(document).ready(function(){
 			html+='<a href="#'+departments_1[departments[i]]+'" class="in_link">'+departments[i]+'</a>';
 			x++;
 			}
-
-	
 		}
 	html+="</li></ul>";
 	$j('#move_to_dep').html(html);
@@ -313,23 +311,15 @@ $j(document).ready(function(){
 										tr.removeClass('selected')
 										  .addClass('favourite')
 										tr.find('a.favourite').toggleClass("fav_false fav_true")
-										  
-										native_tr.find('a.favourite').toggleClass("fav_false fav_true");
-
-
+						  				native_tr.find('a.favourite').toggleClass("fav_false fav_true");
 										});
-
 		//$j(this).parents('tr').first().after(tr);
-
-
-
 		});
 
 		$j("textarea.auto_resizing").bind('keyup', function(){
 			if($j(this).val().split("\n").length+1>$j(this).attr("rows"))
 				$j(this).attr("rows", $j(this).val().split("\n").length+1);
 			});
-
 
 		$j("a.window").click(function(event){
 			openWindow($j(this));
@@ -385,10 +375,7 @@ $j(document).ready(function(){
 	$j("#last_xmpp_messages").change(function(){
 		$j("#xmpp_messages").html($j(this).val())
 		});
-
-
 	});
-
 
 function openWindow(link)
 	{
@@ -400,7 +387,6 @@ function openWindow(link)
 		.css('position', 'absolute')
 		.css('left', left)
 		.css('top', link.offset().top);
-
 	}
 
 function scroll()
@@ -412,10 +398,3 @@ function scroll()
 function F()
 	{
 	}
-	
-
-
-
-
-
-	

@@ -94,9 +94,7 @@ $j(document).ready(function(){
 	$j('div.links a').click(function(){
 		$j('#claim_body span.editing').html($j(this).attr('title'));	
 		});	
-		
-	
-		
+
 	function applyChange(object)
 		{
 		var Url='./pages/si_apply_vac_claim_change.php';
@@ -124,7 +122,4 @@ $j(document).ready(function(){
 				}
 			});		
 		}
-		
-	
-	
 });

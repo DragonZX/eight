@@ -201,7 +201,6 @@ function SearchByAJAX(Url, ID, MinLength, ConID, Name, PKField, PKValue)
 				}
 			}
 						);
-
 		}
 	else
 		{$(ConID).style.display="none";}
@@ -275,4 +274,4 @@ function get_trans(ag_val)
 			}   
 		}   
 		return trans;
-	}	
+	}
