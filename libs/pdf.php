@@ -1,7 +1,7 @@
 <?php
 abstract Class PDF
 {
-	function get_pdf_head()
+	static function get_pdf_head()
 	{
 		return "
 		<table id=\"header\">

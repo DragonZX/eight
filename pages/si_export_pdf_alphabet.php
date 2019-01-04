@@ -1,11 +1,12 @@
 <?php
-require_once('../libs/mpdf/src/mpdf.php');
 require_once('../config.php');
 require_once("../libs/forms.php");
 require_once("../libs/staff.php");
 require_once("../libs/phones.php");
 require_once("../libs/pdf.php");
 
+use Mpdf\Mpdf;
+require_once ('../vendor/autoload.php');
 if($ENABLE_PDF_EXPORT)
 	{
 	Application::makeLdapConfigAttrLowercase();
@@ -89,7 +90,7 @@ if($ENABLE_PDF_EXPORT)
 
 	$html.="</table>";
 
-	$mpdf=new mPDF(false, $PDF_LANDSCAPE?"A4-L":"A4", false, 'Arial', $PDF_MARGIN_LEFT, $PDF_MARGIN_RIGHT, $PDF_MARGIN_TOP, $PDF_MARGIN_BOTTOM);
+	$mpdf=new Mpdf(['mode'=>'utf8'], ['format'=>'A4'], ['orientation' => 'L']);
 
 	$stylesheet = file_get_contents("../skins/".$CURRENT_SKIN."/css/pdf.css");
 	$mpdf->WriteHTML($stylesheet, 1);
