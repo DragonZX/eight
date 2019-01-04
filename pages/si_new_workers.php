@@ -1,21 +1,14 @@
-
 <?php
 $ldap=new LDAP($LDAPServer, $LDAPUser, $LDAPPassword); //Соединяемся с сервером
 
-
 // Определяем какой атрибут будем использовать в качестве формирования ФИО сотрудника
-//-------------------------------------------------------------------------------------------------------------
 if($USE_DISPLAY_NAME)
 	$DisplayName=$DISPLAY_NAME_FIELD;
 else
 	$DisplayName=$LDAP_NAME_FIELD;
-//-------------------------------------------------------------------------------------------------------------
 
 // Делаем фильтр для выборки сотрудников нужных компаний
-//-------------------------------------------------------------------------------------------------------------
 $CompanyNameLdapFilter=Application::getCompanyNameLdapFilter();
-//-------------------------------------------------------------------------------------------------------------
-
 
 $LdapListAttrs = array($LDAP_DISTINGUISHEDNAME_FIELD, $DisplayName,
   		$LDAP_MAIL_FIELD, 
@@ -67,13 +60,11 @@ if(is_array($Staff))
 	
 	$FavouriteDNs=$ldap->getAttrValue($_COOKIE['dn'], $LDAP_FAVOURITE_USER_FIELD);
 
-
 	$row=0;	// переменная, используемая для нумерации строк таблицы
 
 	//Перебираем всех выбраных пользователей
 	foreach($Staff[$LDAP_DISTINGUISHEDNAME_FIELD] AS $key=>$value)
 	{			
-		
 		$Vars['row_css']=($row%2) ? "even" : "odd";
 		$Vars['current_login']=$Login;
 		$Vars['display_name']=$DisplayName;

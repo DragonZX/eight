@@ -47,7 +47,6 @@ else
 
 if($DD['vacation_claim_text'])
 	$Text=iconv($GLOBALS['CHARSET_DATA'], $GLOBALS['CHARSET_APP'], $DD['vacation_claim_text']);
-	
 ?>
 
 <div id="claim">
@@ -80,7 +79,6 @@ if($DD['vacation_claim_text'])
 <div id="claim_foot">
 <div id="claim_date"><span class="editing"><?php echo date("d.m.Y") ?></span> <span class="no_print edit"><a href="javascript: GF();"><Изменить></a><a class="hidden" href="javascript: GF();"><Применить></a></span></div>	<div id="claim_sign">________ <span class="editing"><?php echo $Sign; ?></span> <span class="no_print edit"><a href="javascript: GF();"><Изменить></a><a class="hidden" href="javascript: GF();"><Применить></a><span class="attribute hidden">sign</span><span class="dn hidden"><?php echo $dn; ?></span><img class="hidden loader" src="./images/load.gif" width="16" height="16"/></span></div>
 </div>
-
 </div>
 
 <button id="print" class="no_print">Распечатать</button>

@@ -91,14 +91,10 @@ if($ENABLE_PDF_EXPORT)
 				}
 			}
 		}
-
 	$html.="</table>";
-
 	$mpdf=new mPDF(false, $PDF_LANDSCAPE?"A4-L":"A4", false, 'Arial', $PDF_MARGIN_LEFT, $PDF_MARGIN_RIGHT, $PDF_MARGIN_TOP, $PDF_MARGIN_BOTTOM);
-
 	$stylesheet = file_get_contents("../skins/".$CURRENT_SKIN."/css/pdf.css");
 	$mpdf->WriteHTML($stylesheet, 1);
-
 	$mpdf->WriteHTML($html, 2);
 	$mpdf->Output('pdf_departments.pdf', 'I');
 	}

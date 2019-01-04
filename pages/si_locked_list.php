@@ -26,7 +26,6 @@ if($BLOCK_VIS[$menu_marker]['search'])
 	include("./libs/search.php");
 if($BLOCK_VIS[$menu_marker]['profile'])	
 	include("./libs/profile.php");
-
 ?>
 
 </div>
@@ -34,7 +33,6 @@ if($BLOCK_VIS[$menu_marker]['profile'])
 </form>
 
 <?php
-
 $LdapListAttrs = array($LDAP_DISTINGUISHEDNAME_FIELD, $DisplayName,
   		$LDAP_MAIL_FIELD, 
   		$LDAP_INTERNAL_PHONE_FIELD,
@@ -170,9 +168,6 @@ if(is_array($Staff))
 	if(empty($_COOKIE['dn']) && $ENABLE_DANGEROUS_AUTH)
 		echo Application::getCollTitle();
 	//-------------------------------------------------------------------------------------------------------------
-	
-
-
 	$row=0;	// переменная, используемая для нумерации строк таблицы
 	foreach($Staff[$LDAP_DISTINGUISHEDNAME_FIELD] AS $key=>$value)
 	{

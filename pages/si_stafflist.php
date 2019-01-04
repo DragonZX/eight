@@ -1,4 +1,3 @@
-
 <form class="heads" method="POST" action="<?php echo $_SERVER['PHP_SELF']."?menu_marker=si_stafflist" ?>">
 <?php
 $time=time();
