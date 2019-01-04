@@ -5,7 +5,7 @@
  *  @author Vitaliy Zhukov <dragonzx@aunited.ru> Copyright 2018
  *  @url https://github.com/DragonZX/eight
  */
-//need to check php-ldap php-mbstring
+//need to check php-ldap php-mbstring php-gd php-xml php-zip
 if (!file_exists("./config.php")){die(_("Coudn't find configuration file"));};
 require_once("./config.php") ;
 require_once("./libs/forms.php");
