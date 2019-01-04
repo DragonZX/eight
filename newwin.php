@@ -29,7 +29,7 @@ include_once("auth.php");
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <?php require ("./skins/".$CURRENT_SKIN."/helper.php");
-        echo $skin_styles.$skin_js;?>
+        echo $newwin_styles.$newwin_js;?>
 	</head>
 
 	<body>
