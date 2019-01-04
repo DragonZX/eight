@@ -6,6 +6,9 @@ $skin_styles="
 <link rel=\"stylesheet\" type=\"text/css\" href=\"/skins/default/css/lightview/lightview.css\"/>
 <link rel=\"stylesheet\" href=\"/skins/default/css/general.css\" type=\"text/css\" />
 <link rel=\"shortcut icon\" href=\"/skins/default/favicon.ico\" type=\"image/x-icon\">
+<!--from newwin
+<link rel=\"stylesheet\" href=\"/skins/default/css/si_print_vacation_claim.css\" type=\"text/css\" />
+<link rel=\"stylesheet\" href=\"/skins/default/css/si_print_vacation_claim.css\" type=\"text/css\" />-->
 ";
 $skin_js="
     <script type=\"text/javascript\" src=\"/js/jquery-3.3.1.min.js\"></script>
@@ -17,4 +20,6 @@ $skin_js="
 	<script type=\"text/javascript\" src=\"/js/smartform.js\"></script>
 	<script type=\"text/javascript\" src=\"/js/spinners/spinners.min.js\"></script>
 	<script type=\"text/javascript\" src=\"/js/lightview/lightview.js\"></script>
+	<!--from newwin
+	<script type=\"text/javascript\" src=\"/js/si_print_vacation_claim.js\"></script>-->
 ";

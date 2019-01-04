@@ -28,15 +28,8 @@ include_once("auth.php");
 
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<link rel="STYLESHEET" href="./skins/<?php echo $CURRENT_SKIN; ?>/css/newwin.css" type="text/css" />
-		<link rel="STYLESHEET" href="./skins/<?php echo $CURRENT_SKIN; ?>/css/staff.css" type="text/css" />
-		<link rel="STYLESHEET" href="./skins/<?php echo $CURRENT_SKIN; ?>/css/si_print_vacation_claim.css" type="text/css" />
-		<link rel="STYLESHEET" href="./skins/<?php echo $CURRENT_SKIN; ?>/css/general.css" type="text/css" />
-		<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
-		<script type="text/javascript" src="./js/prototype.js"></script>
-		<script type="text/javascript" src="./js/smartform.js"></script>
-		<script type="text/javascript" src="./js/staff.js"></script>
-		<script type="text/javascript" src="./js/si_print_vacation_claim.js"></script>		
+        <?php require ("./skins/".$CURRENT_SKIN."/helper.php");
+        echo $skin_styles.$skin_js;?>
 	</head>
 
 	<body>

@@ -40,7 +40,7 @@ abstract class Staff
 			}	
 		return $DN;
 		}
-		
+
 	public static function makeMailUrl($Mail)
 		{
 		if($Mail)
@@ -48,7 +48,7 @@ abstract class Staff
 		else
 			return "x";
 		}
-		
+
 
 	public static function makeDeputy($DN, $Title='')
 		{
@@ -133,10 +133,9 @@ abstract class Staff
 			if(@$GLOBALS['FORMAT_CELL_PHONE'])
 				$Val="<nobr>".$phone_attr['format_phone']."</nobr>";
 			}
-		//*********************************************
 		return $Val;
-	}	
-	// ---------------------------------------------------------------------------------------------------------------	
+	}
+
 	public static function makeHomePhone($Val, $Link=true)
 	{
 		$phone_attr=get_phone_attr($Val);
@@ -158,11 +157,9 @@ abstract class Staff
 			if(@$GLOBALS['FORMAT_HOME_PHONE'])
 				$Val="<nobr>".$phone_attr['format_phone']."</nobr>";
 			}
-		//*********************************************
 		return $Val;
 	}
-	// ===============================================================================================================
-		
+
 	public static function makeComputerName($Val)
 		{
 		if($Val)
@@ -178,7 +175,7 @@ abstract class Staff
 		else
 			return "x";	
 		}
-		
+
 	public static function makeDepartment($Val, $MakeAdd=false)
 		{
 		if($Val)
@@ -348,7 +345,6 @@ abstract class Staff
 		($VacationState===0) ? $tag="del" : $tag="span";	// в зависимости от этого применяем разные стили
 				
 		// Строки таблицы
-		//-------------------------------------------------------------------------------------------------------------
 		$data_parent_id=($Vars['data_parent_id']) ? "data-parent-id=".md5($Staff[$GLOBALS['LDAP_DISTINGUISHEDNAME_FIELD']][$key]) : '';
 		$id=($Vars['id']) ? "id=".md5($Staff[$GLOBALS['LDAP_DISTINGUISHEDNAME_FIELD']][$key]) : '';
 		echo"<tr class=\"".$Vars['row_css']."\" ".$id." ".$data_parent_id.">";
@@ -431,7 +427,6 @@ abstract class Staff
 			}
 
 		echo"</tr>";
-		//-------------------------------------------------------------------------------------------------------------
 
 		}
 
@@ -654,7 +649,7 @@ abstract class Application
 
 
 	}
-	
+
 abstract class Alphabet
 	{
 	public static function printGeneralLetters()
