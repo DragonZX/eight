@@ -2,7 +2,7 @@
 /*
  *  @author Vladimir Pitin <vladimir@pitin.su> Copyright 2012
  *  @url https://github.com/tdvsdv/eight
- *  @author Vitaliy Zhukov <dragonzx@aunited.ru> Copyright 2012
+ *  @author Vitaliy Zhukov <dragonzx@aunited.ru> Copyright 2018
  *  @url https://github.com/DragonZX/eight
  */
 //need to check php-ldap php-mbstring
@@ -106,30 +106,12 @@ if($_COOKIE['dn'])
 
 <html>
 
-<head>	
-	<meta name="author" content="Vladimir Pitin" />
+<head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title><?php echo $TITLE; ?></title>
-	
-	<link rel="STYLESHEET" href="./skins/<?php echo $CURRENT_SKIN; ?>/css/main.css" type="text/css" />
-	<link rel="STYLESHEET" href="./skins/<?php echo $CURRENT_SKIN; ?>/css/staff.css" type="text/css" />	
-	<link rel="STYLESHEET" href="./skins/<?php echo $CURRENT_SKIN; ?>/css/calendar/calendar.css" type="text/css" />	
-	<link rel="stylesheet" type="text/css" href="./skins/<?php echo $CURRENT_SKIN; ?>/css/lightview/lightview.css"/>
-	<link rel="STYLESHEET" href="./skins/<?php echo $CURRENT_SKIN; ?>/css/general.css" type="text/css" />
-	<link rel="shortcut icon" href="./skins/<?php echo $CURRENT_SKIN; ?>/favicon.ico" type="image/x-icon">
-	<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
+    <?php require ("./skins/".$CURRENT_SKIN."/helper.php");
+	 echo $skin_styles.$skin_js;?>
 
-
-	<script type="text/javascript" src="./js/prototype.js"></script>
-
-
-	<script type="text/javascript" src="./js/staff.js"></script>
-	<script type="text/javascript" src="./js/calendar/calendar.js"></script>	
-	<script type="text/javascript" src="./js/calendar/calendar-ru.js"></script>	
-	<script type="text/javascript" src="./js/calendar/calendar-setup.js"></script>	
-	<script type="text/javascript" src="./js/smartform.js"></script>
-	<script type="text/javascript" src="/js/spinners/spinners.min.js"></script>
-	<script type="text/javascript" src="/js/lightview/lightview.js"></script>
 </head>
 
 <body onLoad="scroll();">
