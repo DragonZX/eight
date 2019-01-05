@@ -27,8 +27,8 @@ class Time
 				$Date=explode(".", $DateTime[0]);
 			}			
 
-		if(sizeof($Time)==1){$Time[0]=0; $Time[1]=0; $Time[2]=0;}
-		if(sizeof($Date)!=1)
+		if(count($Time)==1){$Time[0]=0; $Time[1]=0; $Time[2]=0;}
+		if(count($Date)!=1)
 			{return @mktime($Time[0], $Time[1], $Time[2], $Date[1], $Date[0], $Date[2]);}
 		else
 			{return false;}
@@ -96,7 +96,7 @@ class Time
 			default:
 				$Date=explode(".", $DateTime[0]);
 			}		
-		if(sizeof($Date)!=1)
+		if(count($Date)!=1)
 			return (int) $Date[0]." ".$GLOBALS['MONTHS'][(int) $Date[1]]." ".$Date[2];
 		else
 			return false;

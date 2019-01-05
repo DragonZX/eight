@@ -142,7 +142,7 @@ if($ALARM_MESSAGE)
 	<div class="sep_tabs">
 		<?php		
 		//Вывод закладок компаний
-		if(sizeof($BOOKMARK_NAMES)>1)
+		if(count($BOOKMARK_NAMES)>1)
 			{
 			$i=0;
 			foreach($BOOKMARK_NAMES AS $key=>$value)
@@ -166,7 +166,7 @@ if($ALARM_MESSAGE)
 	<div class="sep_tabs">
 		<?php
 		//Вывод закладок на различные способы отображения справочника
-		if(sizeof($PAGE_LINKS)>1)
+		if(count($PAGE_LINKS)>1)
 			{
 			foreach($PAGE_LINKS AS $key=>$value)
 				{

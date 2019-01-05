@@ -35,7 +35,7 @@ if($ENABLE_PDF_EXPORT)
 
 	if(is_array($Staff))
 		{
-		$SizeOf=sizeof($Staff[$DisplayName]);	
+		$SizeOf=count($Staff[$DisplayName]);
 
 		for($i=0; $i<$SizeOf; $i++)
 			{

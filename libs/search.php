@@ -36,7 +36,7 @@ if($ONLY_BOOKMARK_VIS)
 			}
 			
 		}
-	if(sizeof($BOOKMARK_NAMES)>1)
+	if(count($BOOKMARK_NAMES)>1)
 		echo "<input type=\"checkbox\" id=\"only_bookmark\" name=\"only_bookmark\" value=\"1\" ".$Checked."  title=\"Искать только пользователей в закладке\" /><label for=\"only_bookmark\"> &mdash; Искать в закладке</label>";
 	}
 else

@@ -33,7 +33,7 @@ if($ENABLE_PDF_EXPORT)
 
 	if(is_array($Staff))
 		{
-		$sizeof=sizeof($Staff[$DisplayName]);
+		$sizeof=count($Staff[$DisplayName]);
 		for($i=0; $i<$sizeof; $i++)
 			{
 			if(!($PDF_HIDE_STAFF_WITHOUT_PHONES&&(!$Staff[$LDAP_INTERNAL_PHONE_FIELD][$i])&&(!$Staff[$HIDE_CITY_PHONE_FIELD][$i])&&(!$Staff[$LDAP_CELL_PHONE_FIELD][$i])))

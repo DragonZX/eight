@@ -78,7 +78,7 @@ class LDAPTable
 		
 		if((is_array(@$this->Attributes['title']))?(!in_array($Title, @$this->Attributes['title'])):true)
 			{
-			$j=sizeof(@$this->Attributes[name]);
+			$j=count(@$this->Attributes[name]);
 
 			$this->Attributes['title'][$j]=$Title;		
 			$this->Attributes['sort'][$j]=$Sort;	
@@ -97,7 +97,7 @@ class LDAPTable
 		
 	function addPregReplace($Pattern, $Replacement, $Title, $Limit="-1", $Conditions=false)
 		{
-		$j=sizeof(@$this->PregReplace[$Title][pattern]);
+		$j=count(@$this->PregReplace[$Title][pattern]);
 		
 		$this->PregReplace[$Title]['pattern'][$j]=$Pattern;
 		$this->PregReplace[$Title]['replacement'][$j]=$Replacement;
@@ -133,7 +133,7 @@ class LDAPTable
 		if(is_array(@$this->PregReplace[$Title][pattern]))
 			{	
 			$AK=array_keys($this->PregReplace[$Title][pattern]);
-			$SizeOf=sizeof($AK);
+			$SizeOf=count($AK);
 			for($i=0; $i<$SizeOf; $i++)
 				{
 				if($this->PregReplace[$Title]['apply'][$i])
@@ -147,7 +147,7 @@ class LDAPTable
 	//Print table heading
 	private function printHead()
 		{
-		$SizeOf=sizeof($this->Attributes['name']);
+		$SizeOf=count($this->Attributes['name']);
 		echo"<tr>";
 		if($this->Numbering)
 			echo"<th><div>№</div></th>";
@@ -166,7 +166,7 @@ class LDAPTable
 					if(is_array($this->Vars['name']))
 						{
 						$AK=array_keys(@$this->Vars[name]);
-						$SizeOf1=sizeof($AK);
+						$SizeOf1=count($AK);
 						for($p=0; $p<$SizeOf1; $p++)
 							{
 							@$Href=$Href."&".$this->Vars[name][$AK[$p]]."=".$this->Vars[value][$AK[$p]];
@@ -196,7 +196,7 @@ class LDAPTable
 			if(strpos($V, ","))
 				$ADAttributes=array_merge($ADAttributes, str_replace(" ", "", explode(",", $V)));
 			}
-		@$SizeOf=sizeof($this->Attributes[name]);
+		@$SizeOf=count($this->Attributes[name]);
 		$LS=ldap_search($this->LC, $BaseDN, $Filter, $ADAttributes);
 
 		if($Entries=ldap_get_entries($this->LC, $LS)) 
@@ -615,7 +615,7 @@ class LDAP
 			$Filter = self::getEmptyFilter();
 
 		$ADAttributes=arrtolower($ADAttributes);
-		$SizeOf=sizeof($ADAttributes);
+		$SizeOf=count($ADAttributes);
 
 		if($Entries=self::getEntriesWithoutSizeLimit($BaseDN, $Filter, $ADAttributes, $WithoutSizeLimit)) 
 			{

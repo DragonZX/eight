@@ -613,8 +613,8 @@ abstract class Application
 		$bookmark_names=$GLOBALS['BOOKMARK_NAMES']; // Массив всех вкладок
 
 		$keys=array_keys($bookmark_names[$bookmark_attr]); //Все значения для поиска для данного атрибута
-		$sizeof=sizeof($keys);
-		$NumBookmaks=sizeof($bookmark_names[$bookmark_attr]);
+		$sizeof=count($keys);
+		$NumBookmaks=count($bookmark_names[$bookmark_attr]);
 
 		$select_index=array_search($GLOBALS['bookmark_name'], $keys); //Порядковый номер выбраной сейчас вкладки
 

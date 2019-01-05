@@ -69,7 +69,7 @@ if($XMPP_ENABLE)
             {
             if(!in_array($_POST['message'], $_COOKIE['xmpp_messages_list']))
                 {
-                $index = sizeof($_COOKIE['xmpp_messages_list']);
+                $index = count($_COOKIE['xmpp_messages_list']);
                 if($index >= $XMPP_NUM_OF_LAST_MESSAGES_PER_USER)
                     $index = 0;
                 setcookie("xmpp_messages_list[".$index."]", $_POST['message'], time()+$XMPP_LAST_MESSAGE_TIME_OF_KEEPING, "/");
