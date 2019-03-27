@@ -6,8 +6,8 @@
  *  @url https://github.com/DragonZX/eight
  */
 //need to check php-ldap php-mbstring php-gd php-xml php-zip
-if (!file_exists("./config.php")){die(_("Coudn't find configuration file"));};
-require_once("./config.php") ;
+if (!file_exists("./config.php")){die(_("Couldn't find configuration file"));};
+require_once("./config.php");
 require_once("./libs/forms.php");
 require_once("./libs/staff.php");
 require_once("./libs/phones.php");

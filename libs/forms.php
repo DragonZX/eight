@@ -91,8 +91,8 @@ class LDAPTable
 		
 	function addVar($Name, $Value)
 		{
-		@$this->Vars[name][$Name]=$Name;		
-		@$this->Vars[value][$Name]=$Value;	
+		@$this->Vars[name][$Name]=$Name;
+		@$this->Vars[value][$Name]=$Value;
 		}	
 		
 	function addPregReplace($Pattern, $Replacement, $Title, $Limit="-1", $Conditions=false)
