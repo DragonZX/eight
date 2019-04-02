@@ -5,8 +5,6 @@ $skin_styles="
     <link rel=\"stylesheet\" href=\"/skins/modern/css/calendar/calendar.css\" type=\"text/css\" />	
     <link rel=\"stylesheet\" type=\"text/css\" href=\"/skins/modern/css/lightview/lightview.css\"/>
     <link rel=\"stylesheet\" href=\"/skins/modern/css/general.css\" type=\"text/css\" />
-    <link rel=\"icon\" type=\"image/png\" href=\"/skins/modern/favicon.png\" />
-    <link rel=\"apple-touch-icon\" href=\"/skins/modern/favicon.png\"/>
     <link rel=\"stylesheet\" href=\"/skins/modern/css/si_print_vacation_claim.css\" type=\"text/css\" />
     <link rel=\"stylesheet\" href=\"/skins/modern/css/si_print_vacation_claim.css\" type=\"text/css\" />
     <link rel=\"stylesheet\" href=\"/libs/FontAwesome/font-awesome.min.css\" type=\"text/css\" />
