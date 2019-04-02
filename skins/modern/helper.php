@@ -5,7 +5,6 @@ $skin_styles="
     <link rel=\"stylesheet\" href=\"/skins/modern/css/calendar/calendar.css\" type=\"text/css\" />	
     <link rel=\"stylesheet\" type=\"text/css\" href=\"/skins/modern/css/lightview/lightview.css\"/>
     <link rel=\"stylesheet\" href=\"/skins/modern/css/general.css\" type=\"text/css\" />
-    <link rel=\"shortcut icon\" href=\"/skins/modern/favicon.ico\" type=\"image/x-icon\">
     <link rel=\"stylesheet\" href=\"/skins/modern/css/si_print_vacation_claim.css\" type=\"text/css\" />
     <link rel=\"stylesheet\" href=\"/skins/modern/css/si_print_vacation_claim.css\" type=\"text/css\" />
     <link rel=\"stylesheet\" href=\"/libs/FontAwesome/font-awesome.min.css\" type=\"text/css\" />

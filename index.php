@@ -111,6 +111,8 @@ if($_COOKIE['dn'])
 	<title><?php echo $TITLE; ?></title>
     <?php require ("./skins/".$CURRENT_SKIN."/helper.php");
 	 echo $skin_styles.$skin_js;?>
+    <link rel="icon" type="image/png" href="<?php echo $FAVICON_D ?>" />
+    <link rel="apple-touch-icon" href="<?php echo $FAVICON_M ?>"/>
 
 </head>
 
