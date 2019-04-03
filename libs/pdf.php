@@ -3,7 +3,7 @@ abstract Class PDF
 {
 	static function get_pdf_head()
 	{
-	    if ($GLOBALS['PDF_LOGO']){$PRINT_LOGO=$GLOBALS['PDF_LOGO'];}else{$PRINT_LOGO="../skins/".$GLOBALS['CURRENT_SKIN']."/images/pdf/logo.png";}
+	    if ($GLOBALS['PDF_LOGO']){$PRINT_LOGO="../".$GLOBALS['PDF_LOGO'];}else{$PRINT_LOGO="../skins/".$GLOBALS['CURRENT_SKIN']."/images/pdf/logo.png";}
 		return "
 		<table id=\"header\">
 		<tr>
