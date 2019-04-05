@@ -5,7 +5,6 @@ $skin_styles="
     <link rel=\"stylesheet\" href=\"/skins/default/css/calendar/calendar.css\" type=\"text/css\" />	
     <link rel=\"stylesheet\" type=\"text/css\" href=\"/skins/default/css/lightview/lightview.css\"/>
     <link rel=\"stylesheet\" href=\"/skins/default/css/general.css\" type=\"text/css\" />
-    <link rel=\"shortcut icon\" href=\"/skins/default/favicon.ico\" type=\"image/x-icon\">
 ";
 $newwin_styles="
     <link rel=\"STYLESHEET\" href=\"/skins/default/css/newwin.css\" type=\"text/css\" />

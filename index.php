@@ -110,10 +110,12 @@ if($_COOKIE['dn'])
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title><?php echo $TITLE; ?></title>
     <?php require ("./skins/".$CURRENT_SKIN."/helper.php");
-	 echo $skin_styles.$skin_js;?>
-    <link rel="icon" type="image/png" href="<?php echo $FAVICON_D ?>" />
-    <link rel="apple-touch-icon" type="image/png" href="<?php echo $FAVICON_M ?>"/>
-
+	 echo $skin_styles.$skin_js;
+     if (isset($FAVICON_D)) {echo "<link rel=\"icon\" type=\"image/png\" href=\"$FAVICON_D\" />";}
+     else{echo "<link rel=\"icon\" type=\"image/png\" href=\"/skins/".$CURRENT_SKIN."/favicon.png\" />";}
+     if (isset($FAVICON_M)) {echo "<link rel=\"apple-touch-icon\" type=\"image/png\" href=\"$FAVICON_M\"/>";}
+     else{echo "<link rel=\"icon\" type=\"image/png\" href=\"/skins/".$CURRENT_SKIN."/favicon-m.png\" />";}
+    ?>
 </head>
 
 <body onLoad="scroll();">
