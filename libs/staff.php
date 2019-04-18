@@ -98,7 +98,7 @@ abstract class Staff
 		else
 			{
 			if(@$GLOBALS['FORMAT_INTERNAL_PHONE'])
-				$Val="<nobr>".$phone_attr['format_phone']."</nobr>";
+				$Val="<span style='white-space:nowrap'>".$phone_attr['format_phone']."</span>";
 			}
 		//*********************************************
 		return $Val;
@@ -124,7 +124,7 @@ abstract class Staff
 		else
 			{
 			if(@$GLOBALS['FORMAT_CITY_PHONE'])
-				$Val="<nobr>".$phone_attr['format_phone']."</nobr>";
+				$Val="<span style='white-space:nowrap'>".$phone_attr['format_phone']."</span>";
 			}
 		return $Val;
 	}	
@@ -147,7 +147,7 @@ abstract class Staff
 		else
 			{
 			if(@$GLOBALS['FORMAT_CELL_PHONE'])
-				$Val="<nobr>".$phone_attr['format_phone']."</nobr>";
+				$Val="<span style='white-space:nowrap'>".$phone_attr['format_phone']."</span>";
 			}
 		return $Val;
 	}
@@ -171,7 +171,7 @@ abstract class Staff
 		else
 			{
 			if(@$GLOBALS['FORMAT_HOME_PHONE'])
-				$Val="<nobr>".$phone_attr['format_phone']."</nobr>";
+				$Val="<span style='white-space:nowrap'>".$phone_attr['format_phone']."</span>";
 			}
 		return $Val;
 	}
