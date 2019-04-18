@@ -168,11 +168,11 @@ else
 $table->addColumn($LDAP_INTERNAL_PHONE_FIELD, $L->l('intrenal_phone'), true);
 $table->addColumn("title", "Должность");
 
-$table->addPregReplace("/^(.*)$/e", "Staff::makeNameUrlFromDn('\\1')", "ФИО");	
+$table->addPregReplace("/^(.*)$/u", function($m){return Staff::makeNameUrlFromDn($m[1]);}, "ФИО");
 
 $table->addPregReplace("/^\.\./", "", "Должность");
 $table->addPregReplace("/^\./", "", "Должность");
-$table->addPregReplace("/^(.*)$/e", "Staff::makeInternalPhone('\\1')", $L->l('intrenal_phone'));
+$table->addPregReplace("/^(.*)$/u", function($m){return Staff::makeInternalPhone($m[1]);}, $L->l('intrenal_phone'));
 
 echo"<div id=\"people_table\">";
 

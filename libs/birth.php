@@ -44,7 +44,7 @@ if($NEAR_BIRTHDAYS)
 	$B->addColumn($LDAP_BIRTH_FIELD, "Дата", false, 0, false, $SortType);
 	
 	//Преобразуем колонку с ФИО в ссылку на полную инфу о сотруднике
-	$B->addPregReplace("/^(.*)$/eu", "Staff::makeNameUrlFromDn('\\1')", "ФИО");
+	$B->addPregReplace("/^(.*)$/u", function($m){return Staff::makeNameUrlFromDn($m[1]);}, "ФИО");
 
 	//В зависимости от формата хранения даты преобразуем дату дня рождения для последующего преобразования в удобно читаемый формат
 	switch($BIRTH_DATE_FORMAT)
