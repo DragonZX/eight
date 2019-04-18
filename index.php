@@ -15,8 +15,6 @@ require_once("./libs/time.php");
 require_once("./libs/localization.php");
 require_once("./libs/spyc.php");
 
-$_COOKIE['dn'] = "";
-
 if ($DEBUG_MODE){ini_set("display_errors", 1);}
 Application::makeLdapConfigAttrLowercase();	//Преобразуем все атрибуты LDAP в нижний регистр.
 $L=new Localization("./config/locales/".$LOCALIZATION.".yml");
@@ -93,7 +91,7 @@ include_once("auth.php");
 //----------------------------------------	
 
 //Если есть кука с dn, то ищется имя залогиненого пользователя
-if($_COOKIE['dn'])
+if(isset($_COOKIE['dn']))
 	{
 	if($USE_DISPLAY_NAME)
 		$WhoAreYou=$ldap->getValue($_COOKIE['dn'], $DISPLAY_NAME_FIELD);

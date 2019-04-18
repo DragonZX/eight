@@ -324,9 +324,9 @@ abstract class Staff
 		if($GLOBALS['menu_marker']=='si_alph_staff_list' || $GLOBALS['menu_marker']=='si_dep_staff_list')
 			{
 			$num=5;
-			if( self::showComputerName($GLOBALS['Login']))
+			if(isset($Login) && self::showComputerName($GLOBALS['Login']))
 				$num++;		
-			if($GLOBALS['FAVOURITE_CONTACTS'] && !empty($_COOKIE['dn']))
+			if($GLOBALS['FAVOURITE_CONTACTS'] && isset($_COOKIE['dn']))
 				$num++;	
 
 			}
@@ -402,7 +402,7 @@ abstract class Staff
 				echo "<td>".self::highlightSearchResult(self::makeCellPhone($Staff[$GLOBALS['LDAP_CELL_PHONE_FIELD']][$key]), $Vars['search_str'])."</td>"; //Делаем ссылку на полную информацию о сотруднике
 			}
 
-		if(self::showComputerName($Vars['current_login'])) //Если сотрудник является администратором справочника
+		if(isset($Login)&&self::showComputerName($Vars['current_login'])) //Если сотрудник является администратором справочника
 			{
 			if(empty($Vars['search_str'])) //Если не велся поиск, то не подсвечивавем результаты	
 				echo "<td>".self::makeComputerName($Staff[$GLOBALS['LDAP_COMPUTER_FIELD']][$key])."</td>"; //Выводим имя компьютера
@@ -412,7 +412,7 @@ abstract class Staff
 		if( @$Staff[$GLOBALS['LDAP_CREATED_DATE_FIELD']][$key] ) 
 			echo "<td>".Time::getHandyDateOfDMYHI($Staff[$GLOBALS['LDAP_CREATED_DATE_FIELD']][$key], $GLOBALS['LDAP_CREATED_DATE_FORMAT'])."</td>"; //Выводим дату принятия на работу
 
-		if($GLOBALS['XMPP_ENABLE'] && $GLOBALS['XMPP_MESSAGE_LISTS_ENABLE'] && $_COOKIE['dn'])
+		if($GLOBALS['XMPP_ENABLE'] && $GLOBALS['XMPP_MESSAGE_LISTS_ENABLE'] && isset($_COOKIE['dn']))
 			{
 			if(is_array($_COOKIE['xmpp_list']) && in_array($Staff[$GLOBALS['LDAP_USERPRINCIPALNAME_FIELD']][$key], $_COOKIE['xmpp_list']))
 				$xmpp_link_class="in_xmpp_list";
@@ -423,7 +423,7 @@ abstract class Staff
 				  <a href=\"#\" class=\"add_xmpp_list ".$xmpp_link_class." in_link\" title=\"".$GLOBALS['L']->l("add_contact_to_xmpp_list")."\" data-login=".$Staff[$GLOBALS['LDAP_USERPRINCIPALNAME_FIELD']][$key]."></a>
 				  </td>"; //Выводим иконку добавления сотрудника в группу рассылки
 			}
-		if($GLOBALS['FAVOURITE_CONTACTS'] && $_COOKIE['dn'])
+		if($GLOBALS['FAVOURITE_CONTACTS'] && isset($_COOKIE['dn']))
 			{
 			if(is_array($Vars['favourite_dns']))
 				$favourite_link_class=(in_array($Staff[$GLOBALS['LDAP_DISTINGUISHEDNAME_FIELD']][$key], $Vars['favourite_dns'])) ? 'fav_true' : 'fav_false';
