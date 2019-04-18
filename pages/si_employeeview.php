@@ -34,8 +34,8 @@ if($USE_DISPLAY_NAME)
 else
 	$Name=$ldap->getValue($dn, "name");
 
-$FIO=preg_replace_callback("/^([ёA-zA-я-]+)[\s]{1}([ёA-zA-я-]+[\s]{1}[ёA-zA-я-]+)$/", "<div class=\"surname_head\">$1</div><div class=\"name\">$2</div>", $Name);
-$FIO=preg_replace_callback("/^([ёA-zA-я-]+[\s]{1}[ёA-zA-я-]{1}.)[\s]{1}([ёA-zA-я-]+)$/", "<div class=\"surname_head\">$2</div><div class=\"name\">$1</div>", $FIO);
+$FIO=preg_replace("/^([ёA-zA-я-]+)[\s]{1}([ёA-zA-я-]+[\s]{1}[ёA-zA-я-]+)$/", "<div class=\"surname_head\">$1</div><div class=\"name\">$2</div>", $Name);
+$FIO=preg_replace("/^([ёA-zA-я-]+[\s]{1}[ёA-zA-я-]{1}.)[\s]{1}([ёA-zA-я-]+)$/", "<div class=\"surname_head\">$2</div><div class=\"name\">$1</div>", $FIO);
 
 echo $FIO;
 
@@ -52,7 +52,7 @@ $Department=$ldap->getValue($dn, $LDAP_DEPARTMENT_FIELD);
 $Title= $ldap->getValue($dn, $LDAP_TITLE_FIELD);
 
 if($Department)
-	echo "<div class=\"position\"><span style='white-space:nowrap' class=\"department\">".Staff::makeDepartment($Department)."</span> <br/><span class=\"position\">".Staff::makeTitle($Title)."</span></div>";
+	echo "<div class=\"position\"><span style='white-space:nowrap' class=\"department\">".Staff::makeDepartment($Department)."</span style='white-space:nowrap'> <br/><span class=\"position\">".Staff::makeTitle($Title)."</span></div>";
 
 if($VACATION)
 	{
