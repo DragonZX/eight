@@ -137,7 +137,7 @@ class LDAPTable
 			for($i=0; $i<$SizeOf; $i++)
 				{
 				if($this->PregReplace[$Title]['apply'][$i])
-					$Value=preg_replace($this->PregReplace[$Title][pattern][$i], $this->PregReplace[$Title][replacement][$i], $Value, $this->PregReplace[$Title][limit][$i]);
+					$Value=preg_replace_callback($this->PregReplace[$Title][pattern][$i], $this->PregReplace[$Title][replacement][$i], $Value, $this->PregReplace[$Title][limit][$i]);
 				}
 			}
 		return $Value;
