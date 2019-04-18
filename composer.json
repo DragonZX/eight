@@ -1,6 +1,10 @@
 {
     "require": {
+        "php":">=5.3.0",
         "mpdf/mpdf": "^7.1",
-        "fabiang/xmpp": "^0.7.0"
+        "fabiang/xmpp": "^0.7.0",
+        "ext-mbstring": "*",
+        "ext-ldap": "*",
+        "ext-gd": "*"
     }
 }
