@@ -11,8 +11,6 @@ $OU="OU=orgunit,DC=domain,DC=ru";
 $DIS_USERS_COND="(!(useraccountcontrol:1.2.840.113556.1.4.803:=2))(!(useraccountcontrol:1.2.840.113556.1.4.803:=16))";
 $LDAP_SIZE_LIMIT_COMPATIBILITY=false;
 
-
-
 // LDAP FIELDS
 $LDAP_DISTINGUISHEDNAME_FIELD="distinguishedname";
 $LDAP_USERPRINCIPALNAME_FIELD="userprincipalname";
@@ -44,28 +42,30 @@ $LDAP_END_DATE_VACATION_FIELD="extensionattribute14";
 $LDAP_AVATAR_FIELD="thumbnailphoto";
 $LDAP_PHOTO_FIELD="jpegphoto";
 $LDAP_ROOM_NUMBER_FIELD="extensionattribute15";
+$LDAP_SOCIAL_FIELD="extensionattribute16";
 
+// ADMIN LOGINS
 $ADMIN_LOGINS[]='first_admin@domain.ru';
 
-// Дни рождений
+// BIRTHDAYS
 $NUM_ALARM_DAYES=31;
 $NEAR_BIRTHDAYS=true;
 $BIRTH_DATE_FORMAT="dd.mm.yyyy";
 $BIRTH_VIS_ROW_NUM=5;
 $SHOW_JUBILEE_INFO=true;
 
-// Различные данные о пользователе
+// USER DATA
 $USE_DISPLAY_NAME=true;
 
-// Имя компьютера пользователя
+// USER COMPUTER NAME
 $SHOW_COMPUTER_FIELD=false;
 $SHOW_DEPUTY=true;
 $SHOW_DEPUTY_IN_LISTS=false;
 
-// Кабинеты
+// ROOMS
 $HIDE_ROOM_NUMBER=true;
 
-// Номера телефонов
+// PHONE NUMBERS
 $HIDE_CITY_PHONE_FIELD=false;
 $HIDE_CELL_PHONE_FIELD=false;
 $FORMAT_CITY_PHONE=true;
@@ -74,8 +74,10 @@ $FORMAT_INTERNAL_PHONE=false;
 $FORMAT_HOME_PHONE=true;
 $USE_PHONE_CODES_DESCRIPTION=true;
 $FORMAT_PHONE_BLOCKLEN=2;
+$SHOW_SOCIAL_FIELD=false;
+$SHOW_SOCIAL_FIELD_DETAILED=true;
 
-// Отпуск сотрудников
+// VACATIONS
 $VACATION=true;
 $VAC_CLAIM_ALARM=true;
 $VAC_CLAIM_ALARM_DAYES_FROM=21;
@@ -94,7 +96,7 @@ $SHOW_PREV_VAC['si_dep_staff_list']=false;
 $SHOW_NEXT_VAC['si_dep_staff_list']=false;
 $SHOW_CURRENT_VAC['si_dep_staff_list']=true;
 
-// Вкладки организации и ее филиалов
+// ORGANISATION TABS
 $BOOKMARK_NAMES['company']['Рога']="Рога и копыта";
 $BOOKMARK_NAMES['company']['Интегра)']="Интегра групп";
 $BOOKMARK_NAMES['company']['фгу']="ФГУ - распил бабла";
@@ -109,7 +111,7 @@ $BOOKMARK_NAME_EXACT_FIT['mobile']=false;
 $BOOKMARK_MAX_NUM_ITEMS['company']=3;
 
 
-// Экспорт в PDF
+// PDF EXPORT
 $PDF_TITLE="Справочник сотрудников";
 $PDF_SECOND_LINE="факс: 2-222-222";
 $PDF_LOGO="";
@@ -121,7 +123,7 @@ $PDF_MARGIN_BOTTOM=5;
 $PDF_LANDSCAPE=false;
 $ENABLE_PDF_EXPORT=true;
 
-// Сортировка в справочнике
+// SORTING
 $DIRECTOR_FULL_TITLE="Директор";
 $DEP_SORT_ORDER["Дирекция"]='order_replace';
 $DEP_SORT_ORDER["Департамент ИТ\Системные администраторы"]["Департамент ИТ\\"]='order_replace';
@@ -133,12 +135,12 @@ $STAFF_SORT_ORDER["Руководитель"]='order_replace';
 $STAFF_SORT_ORDER["Заместитель"]='order_replace';
 $STAFF_SORT_ORDER["Главный"]='order_replace';
 
-// Поиск в справочнике
+// SEARCH
 $SEARCH_DEFAULT_VALUE="*";
 $ONLY_BOOKMARK=false;
 $ONLY_BOOKMARK_VIS=true;
 
-// Работа с фотографиями пользователей
+// PHOTOS
 $PHOTO_DIR="./files/ph";
 $DIRECT_PHOTO=false;
 $PHOTO_MAX_SIZE=500;
@@ -152,7 +154,7 @@ $THUMBNAIL_PHOTO_EDIT=true;
 $THUMBNAIL_PHOTO_VIS=true;
 $SHOW_EMPTY_AVATAR=true;
 
-// Регулярные выражения (http://ru2.php.net/manual/ru/reference.pcre.pattern.syntax.php)
+// REGULAR EXPRESSIONS (http://ru2.php.net/manual/ru/reference.pcre.pattern.syntax.php)
 $RE_MAIL="(^\w+([\.\w]+)*\w@\w((\.\w)*\w+)*\.\w{2,4}$)|(^$)";
 $RE_OTHER_TELEPHONE="(^[0-9]{3}$)|(^$)";
 $RE_MOBILE="(^\+7[0-9]{10}$)|(^[0-9]{6}$)|(^2[0-9]{6}$)|(^$)";
@@ -160,8 +162,8 @@ $RE_TELEPHONE_NUMBER="(^[0-9]{7}$)|(^8[0-9]{10}$)|(^$)";
 $RE_BIRTHDAY="(^[0-3]{1}[0-9]{1}.[0-1]{1}[0-9]{1}.[0-9]{4}$)|(^$)";
 $RE_FIO="(^[ёA-zA-я-]+[\s]{1}([ёA-zA-я-]+[\s]{1}[ёA-zA-я-]+)$)|(^[ёA-zA-я-]+[\s]{1}[ёA-zA-я]{1}.[\s]{1}[ёA-zA-я-]+$)|(^$)";
 
-// WEB-настройки справочника
-$DEFAULT_PAGE="si_stafflist"; // Маркер страницы, которая должна открываться по умолчанию. Доступны значения, перечисленные в параметре $PAGE_LINKS. По умолчанию используется «si_dep_staff_list»
+// WEB-SETTINGS
+$DEFAULT_PAGE="si_stafflist"; // Default page. Available settings in $PAGE_LINKS variable. For default «si_dep_staff_list»
 $FAVICON_D=""; // Favicon for Desktop devices
 $FAVICON_M=""; // Favicon for Mobile devices
 
@@ -172,24 +174,24 @@ $PAGE_LINKS['si_stafflist']="Поиск сотрудников";
 $PAGE_LINKS['si_new_workers']="Новички";
 $PAGE_LINKS['si_locked_list']="Уволенные";
 
-//Блок поиска сотрудников
+//Staff searching block
 $BLOCK_VIS['si_dep_staff_list']['search']=false;
 $BLOCK_VIS['si_alph_staff_list']['search']=false;
 $BLOCK_VIS['si_stafflist']['search']=true;
-//Блок, выводящий информацию об аутентифицированном сотруднике
+//Auth block
 $BLOCK_VIS['si_dep_staff_list']['profile']=false;
 $BLOCK_VIS['si_alph_staff_list']['profile']=false;
 $BLOCK_VIS['si_stafflist']['profile']=true;
-//Блок ближайших дней рождений
+//Birthdays block
 $BLOCK_VIS['si_dep_staff_list']['birthdays']=false;
 $BLOCK_VIS['si_alph_staff_list']['birthdays']=false;
 $BLOCK_VIS['si_stafflist']['birthdays']=true;
-//Блок быстрого перехода на букву или на отдел
+//Fast switch block
 $BLOCK_VIS['si_dep_staff_list']['fast_move']=true;
 $BLOCK_VIS['si_alph_staff_list']['fast_move']=true;
-$HIDE_STAFF_WITHOUT_PHONES=false; // То же что $PDF_HIDE_STAFF_WITHOUT_PHONES, но для списка сотрудников с разбивкой по отделам.
-$ALPH_ITEM_IN_LINE=35; // Количество букв в одной строке в блоке быстрого перехода, на странице с разбивкой сотрудников по первым буквам фамилии. По умолчанию значение равно «35»
-$DEP_ITEM_IN_COL=3; // Количество отделов в одном столбце в блоке быстрого перехода, на странице с разбивкой сотрудников по отделам. По умолчанию значение равно «3»
+$HIDE_STAFF_WITHOUT_PHONES=false; // As is $PDF_HIDE_STAFF_WITHOUT_PHONES, but for staff list.
+$ALPH_ITEM_IN_LINE=35; // Number of words in one row for fast switch block. By default «35»
+$DEP_ITEM_IN_COL=3; // Number of departments in one row of fast switch block. by default «3»
 $COPY_RIGHT="<a href=\"http://www.pitin.su\" target=\"NewWindow\">&copy; V. Pitin, 2012 </a>"; // :-)
 $COPY_RIGHT="";
 /* 
@@ -203,7 +205,7 @@ $ALARM_MESSAGE=""; // Если в параметре что-то есть, то 
 //----------------------------------------------------------------------------
 
 //Skins
-$CURRENT_SKIN='default';	// По умолчанию $CURRENT_SKIN='default'.
+$CURRENT_SKIN='default';	// By default $CURRENT_SKIN='default'.
 
 //Other
 $PHPPath="./pages";
@@ -221,7 +223,7 @@ $BIND_DEPUTY_AND_VACATION=true;
 
 $FAVOURITE_CONTACTS=true;
 
-//Новые сотрудники
+//New users
 $LDAP_CREATED_DATE_FORMAT="dd.mm.yyyy hh:mm:ss";
 $NEW_USERS_NUM_DAYS=30;
 $EVALUATION_PERIOD=30;

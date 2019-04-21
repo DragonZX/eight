@@ -14,6 +14,7 @@ $newwin_styles="
 	<link rel=\"STYLESHEET\" href=\"/skins/modern/css/staff.css\" type=\"text/css\" />
 	<link rel=\"STYLESHEET\" href=\"/skins/modern/css/si_print_vacation_claim.css\" type=\"text/css\" />
 	<link rel=\"STYLESHEET\" href=\"/skins/modern/css/general.css\" type=\"text/css\" />
+	<link rel=\"STYLESHEET\" href=\"/libs/FontAwesome/font-awesome.min.css\" type=\"text/css\" />
 ";
 $skin_js="
     <script type=\"text/javascript\" src=\"/js/jquery-3.3.1.min.js\"></script>
