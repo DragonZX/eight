@@ -5,6 +5,9 @@ $dn=($_GET['dn'])?$_GET['dn']:$_POST['dn'];
 @$_GET['sortcolumn']=($_GET['sortcolumn'])?$_GET['sortcolumn']:"ФИО";
 @$_GET['sorttype']=($_GET['sorttype'])?$_GET['sorttype']:"ASC";
 
+$SLinks=$ldap->getValue($dn, $LDAP_SOCIAL_FIELD);
+$social=Social::GetLinks($SLinks);
+
 $ldap=new LDAP($LDAPServer, $LDAPUser, $LDAPPassword);
 
 if($fio)
@@ -19,15 +22,15 @@ else
 	$Image=$ldap->getImage($dn, $GLOBALS['LDAP_PHOTO_FIELD'], $Image);
 	}
 
-echo"<table class=\"user\">";
-echo"<tr>";
-echo"<td width=\"1%\">";
+echo"<table class=\"user\">
+<tr>
+<td>";
 if($Image)
-	echo"<div class=\"photo\"><img src=\"".$Image."\"></div>";	
+	echo"<div class=\"photo\"><img alt=\"photo\" src=\"".$Image."\"></div>";
 else
 	echo"<div class=\"photo no_photo\"></div>";
-echo"</td>";
-echo"<td>";
+echo"</td>
+<td>";
 
 if($USE_DISPLAY_NAME)
 	$Name=$ldap->getValue($dn, $DISPLAY_NAME_FIELD);
@@ -112,7 +115,7 @@ if($DeputyDN && $SHOW_DEPUTY && (Staff::checkInVacation($StDate, $EndDate) && $B
 
 $Birth=$ldap->getValue($dn, $LDAP_BIRTH_FIELD);
 
-//День рождения
+//Birth date
 //-----------------------------------------------------------------------------
 if($Birth)
 {
@@ -134,7 +137,13 @@ if($Birth)
 		echo"<div class=\"birthday\"><h6>".$L->l('birthday').":</h6> ".(int) $Date[0]." ".$MONTHS[(int) $Date[1]].". ".@$Jubilee."</div>";	
 }
 //-----------------------------------------------------------------------------
-
+//Social Block
+if (isset($SLinks)) {
+    for ($i = 0; isset($SLinks[$i][0]); $i++)
+    {
+        echo "<div class='slinks'><a class='fa fa-" . $SLinks[$i][0] . "' style='display:inline' href='" . $SLinks[$i][1] . "'></a></div>";
+    }
+}
 $ManDN=$ldap->getValue($dn, $LDAP_MANAGER_FIELD);	
 if($ManDN)
 {
@@ -151,14 +160,11 @@ echo "</div>";
 if (isset($Manager))
 	echo $Manager;
 
-
-
-echo"</td>";
-echo"</tr>";
-
-echo"<tr>";
-echo"<td colspan='2'>";
-echo"<div class=\"staff\" id=\"people\"><h6>Подчиненные:</h6></div>";
+echo"</td>
+</tr>
+<tr>
+<td colspan='2'>
+<div class=\"staff\" id=\"people\"><h6>Подчиненные:</h6></div>";
 $table=new LDAPTable($LDAPServer, $LDAPUser, $LDAPPassword, false, false);
 
 if($USE_DISPLAY_NAME)
@@ -177,7 +183,7 @@ $table->addPregReplace("/^(.*)$/u", function($m){return Staff::makeInternalPhone
 echo"<div id=\"people_table\">";
 
 $table->printTable($OU, "(&(company=*)(manager=".LDAP::escapeFilterValue($dn).")".$DIS_USERS_COND.")");
-echo"</div>";
-echo"</td>";
-echo"</tr>";
-echo"</table>";
+echo"</div>
+</td>
+</tr>
+</table>";
