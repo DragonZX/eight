@@ -1,13 +1,13 @@
 <?php
-if(@$_SERVER['REMOTE_USER']) //Если есть прозрачно аутентифицированный пользователь. И в серверной переменной хранится его логин
+if(@$_SERVER['REMOTE_USER']) //If we store user login in server variable
 	{
 	if($Login=$ldap->getValue($OU, $LDAP_USERPRINCIPALNAME_FIELD, $LDAP_USERPRINCIPALNAME_FIELD."=".$_SERVER['REMOTE_USER']."*")) //Проверяим есть ли юзер, с логином аутентифицированного пользователя в LDAP
 		{
-		if(in_array($Login, $ADMIN_LOGINS)) //Пользователь является администратором справочника
+		if(in_array($Login, $ADMIN_LOGINS)) //User is admin
 			{
 			$Access=true;
 			}
-		else //Пользователь НЕ является администратором справочника
+		else //User is not admin
 			$Access=false;	
 		$Valid=true;		
 		}
@@ -25,7 +25,7 @@ else
 			{
 			$Access=true;
 			}
-		else //Пользователь НЕ является администратором справочника
+		else //User is not admin
 			$Access=false;
 		$Valid=true;
 		}

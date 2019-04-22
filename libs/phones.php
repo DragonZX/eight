@@ -15,14 +15,14 @@ function get_phone_attr($phone = '', $convert = true, $trim = true)
     if (empty($phone)) {
         return '';
     }
-    // очистка от лишнего мусора с сохранением информации о "плюсе" в начале номера
+    // clearing for trash saving info about plus at the begining
     $phone=trim($phone);
     $plus = ($phone[0] == '+');
 	$OriginalPhone = preg_replace("/[^0-9A-Za-z-\s]/", "", $phone); /* оригинальное форматирование номера */
     $phone = preg_replace("/[^0-9A-Za-z]/", "", $phone);
     
 
-    // конвертируем буквенный номер в цифровой
+    // converting letter number to numbers
     if ($convert == true && !is_numeric($phone)) {
         $replace = array('2'=>array('a','b','c'),
         '3'=>array('d','e','f'),
@@ -38,14 +38,14 @@ function get_phone_attr($phone = '', $convert = true, $trim = true)
         }
     }
 
-    // заменяем 00 в начале номера на +
+    // replacing 00 in the begining to +
     if (substr($phone, 0, 2)=="00")
     {
         $phone = substr($phone, 2, strlen($phone)-2);
         $plus=true;
     }
 
-    // если телефон длиннее 7 символов, начинаем поиск страны
+    // if phone more then 7 symbols, searching for country
     if (strlen($phone)>7)
     foreach ($GLOBALS['PHONE_CODES'] as $countryCode=>$data)
     {
@@ -63,7 +63,7 @@ function get_phone_attr($phone = '', $convert = true, $trim = true)
             }
 
             $cityCode=NULL;
-            // сначала сравниваем с городами-исключениями
+            // checking first if city is in inclusion
             if ($data['exceptions_max']!=0)
             for ($cityCodeLen=$data['exceptions_max']; $cityCodeLen>=$data['exceptions_min']; $cityCodeLen--)
             if (in_array(intval(substr($phone, 0, $cityCodeLen)), $data['exceptions']))
@@ -72,14 +72,14 @@ function get_phone_attr($phone = '', $convert = true, $trim = true)
                 $phone = substr($phone, $cityCodeLen, strlen($phone)-$cityCodeLen);
                 break;
             }
-            // в случае неудачи с исключениями вырезаем код города в соответствии с длиной по умолчанию
+            // if fault, city code cuts using default length
             if (is_null($cityCode))
             {
                 $cityCode = substr($phone, 0, $data['cityCodeLength']);
                 $phone = substr($phone, $data['cityCodeLength'], strlen($phone)-$data['cityCodeLength']);
             }
 
-            // возвращаем результат
+            // returning result
             $PhoneAttr['format_phone']=($plus ? "+" : "").$countryCode.'('.$cityCode.')'.phoneBlocks($phone, $GLOBALS['FORMAT_PHONE_BLOCKLEN']);
             $PhoneAttr['clear_phone']=($plus ? "+" : "").$countryCode.$cityCode.$phone;
 			$PhoneAttr['original_phone']=$OriginalPhone;
@@ -90,7 +90,7 @@ function get_phone_attr($phone = '', $convert = true, $trim = true)
             return $PhoneAttr;
         }
     }
-    // возвращаем результат без кода страны и города
+    // returning result without country code and city code
     $PhoneAttr['format_phone']=($plus ? "+" : "").phoneBlocks($phone, $GLOBALS['FORMAT_PHONE_BLOCKLEN']);
     $PhoneAttr['clear_phone']=($plus ? "+" : "").$phone;
 	$PhoneAttr['original_phone']=$OriginalPhone;
@@ -98,7 +98,7 @@ function get_phone_attr($phone = '', $convert = true, $trim = true)
     return $PhoneAttr;
 }
 
-// функция превращает любое числов в строку формата XX-XX-... или XXX-XX-XX-... в зависимости от четности кол-ва цифр
+// set number to XX-XX-... or XXX-XX-XX-... depends on parity
 //------------------------------------------------------------------------
 function phoneBlocks($number, $blocklen)
 {

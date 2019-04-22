@@ -5,7 +5,7 @@ function to_json(array $data)
     $keys = array_keys($data);
     $prevKey = -1;
 
-    // Необходимо понять — перед нами список или ассоциативный массив.
+    // Check if it's list or array.
     foreach ($keys as $key)
         if (!is_numeric($key) || $prevKey + 1 != $key)
         {

@@ -50,7 +50,7 @@ class LDAPTable
 		$this->Numbering=$Numbering;
 		
 		
-		$this->LC=ldap_connect($Server);
+		$this->LC=ldap_connect($Server, $Port);
 		ldap_set_option($this->LC, LDAP_OPT_PROTOCOL_VERSION, 3); 
 		ldap_set_option($this->LC, LDAP_OPT_REFERRALS, 0); 
 
@@ -190,7 +190,7 @@ class LDAPTable
 		{
 		$BaseDN=iconv($GLOBALS['CHARSET_APP'], $GLOBALS['CHARSET_DATA'], $BaseDN);
 		$Filter=iconv($GLOBALS['CHARSET_APP'], $GLOBALS['CHARSET_DATA'], $Filter);
-		$ADAttributes=array_values($this->Attributes['name']); //Убрать дублирование
+		$ADAttributes=array_values($this->Attributes['name']); //No duplicates
 		foreach($ADAttributes AS $V)
 			{
 			if(strpos($V, ","))
@@ -313,11 +313,9 @@ class LDAPTable
 							$Value=self::convertValue($Entries[$i][$this->Attributes['name'][$j]][$this->Attributes['i'][array_search($ADAttributes[$j], $this->Attributes['name'])]]);
 						}
 
-					
+					//-----------------------------------------------------------------------------
 
-					//-----------------------------------------------------------------------------	
-
-					//Проверка применимости замены на рег. выражениях
+					//Regular expressions replacement check
 					//-----------------------------------------------------------------------------				
 					if(is_array(@$this->PregReplace[$this->Attributes[title][$j]]['conditions']))
 						{						

@@ -2,10 +2,9 @@
 /*
  *  @author Vladimir Pitin <vladimir@pitin.su> Copyright 2012
  *  @url https://github.com/tdvsdv/eight
- *  @author Vitaliy Zhukov <dragonzx@aunited.ru> Copyright 2018
+ *  @author Vitaliy Zhukov <dragonzx@aunited.ru> Copyright 2019
  *  @url https://github.com/DragonZX/eight
  */
-//need to check php-ldap php-mbstring php-gd php-xml php-zip
 if (!file_exists("./config.php")){die(_("Couldn't find configuration file"));};
 require_once("./config.php");
 require_once("./libs/forms.php");
@@ -48,7 +47,7 @@ if(@$_POST['form_sent']&&(!$only_bookmark))
 	$BOOKMARK_NAME="*";
 
 
-//Аутентификация для Staff
+//Auth for Staff
 //-------------------------------------------------------------------------------------------------
 
 @$dn=($_GET['dn'])?$_GET['dn']:$_POST['dn'];
@@ -85,12 +84,12 @@ else
 
 //-------------------------------------------------------------------------------------------------	
 
-//Аутентификация пользователя
+//User auth
 //----------------------------------------	
 include_once("auth.php");
 //----------------------------------------	
 
-//Если есть кука с dn, то ищется имя залогиненого пользователя
+//If we have cookie with dn, searching for logined user
 if(isset($_COOKIE['dn']))
 	{
 	if($USE_DISPLAY_NAME)

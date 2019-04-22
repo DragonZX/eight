@@ -1,10 +1,33 @@
 {
+    "name": "aunited/eight",
+    "description": "LDAP Phonebook",
+    "license": "MIT",
+    "homepage": "https://github.com/DragonZX/eight",
+    "keywords": ["ldap", "users","phonebook"],
+    "authors": [
+        {
+            "name": "Vladimir Pitin",
+            "email": "vladimir@pitin.su",
+            "homepage": "http://pitin.su/",
+            "role": "developer"
+        },
+        {
+            "name": "Vitaliy Zhukov",
+            "email": "dragonzx@yandex.com",
+            "homepage": "http://aunited.ru/",
+            "role": "developer"
+        }
+    ],
     "require": {
-        "php":">=5.3.0",
+        "php":">=5.6",
         "mpdf/mpdf": "^7.1",
         "fabiang/xmpp": "^0.7.0",
         "ext-mbstring": "*",
         "ext-ldap": "*",
-        "ext-gd": "*"
+        "ext-gd": "*",
+        "ext-xml": "*",
+        "ext-zip": "*",
+        "ext-gettext": "*",
+        "ext-iconv": "*"
     }
 }

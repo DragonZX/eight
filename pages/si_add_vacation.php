@@ -1,6 +1,6 @@
 <?php
 require_once("../libs/require_once.php");
-if($Valid)
+if(isset($Valid) && $Valid)
 	{
 	if($_POST['vac_from'])
 		{

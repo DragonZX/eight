@@ -80,7 +80,7 @@ abstract class Staff
 			echo "<span class=\"unimportant\"> ".$GLOBALS['L']->l("deputy")." </span><span class=\"deputy\">".Staff::makeNameUrlFromDn($DN, $Title)."</span>";
 		}
 
-	// Функции форматирования телефонных номеров
+	// Formatting phone numbers
 	// ===============================================================================================================
 	public static function makeInternalPhone($Val, $Link=true)
 	{
@@ -352,7 +352,7 @@ abstract class Staff
 		return $Str;
 		}
 
-	//Выводит строку таблицы с информацией по определенному сотруднику
+	//Printing table row with the employee info
 	public static function printUserTableRow($Staff, $key, $Vars)
 		{
 		$StDate=$Staff[$GLOBALS['LDAP_ST_DATE_VACATION_FIELD']][$key]; 
@@ -499,7 +499,7 @@ abstract class Application
 		$th_content=$Title;
 
 
-		if(is_array(@$Attr['sort'])) //Если по полю дожна позволятся сортировка
+		if(is_array(@$Attr['sort'])) //If allowing sort by this field
 			{
 			$th_css_class.=" sort";
 
@@ -601,31 +601,31 @@ abstract class Application
 		return $Window;
 		}
 
-	//Возвращает массив
-	//первый элемент 'bookmark' - массив со ссылками вкладок, которые должны показаться в данной ситуации
-	//второй элемент 'window'- массив ссылок для скрытого всплывающего окна
+	//Returning array
+	//first element 'bookmark' - array contains tab links for current situation
+	//second element 'window'- links for pop up window
 	public static function getBookMarkLinks($bookmark_attr, $class='')
 		{
 		if ( array_key_exists($bookmark_attr, $GLOBALS['BOOKMARK_MAX_NUM_ITEMS']) )
-			$max_items=$GLOBALS['BOOKMARK_MAX_NUM_ITEMS'][$bookmark_attr]; //Сколько вкладок максимум показывать по данному атрибуту
+			$max_items=$GLOBALS['BOOKMARK_MAX_NUM_ITEMS'][$bookmark_attr];
 		else 
 			$max_items=0;
-		$bookmark_names=$GLOBALS['BOOKMARK_NAMES']; // Массив всех вкладок
+		$bookmark_names=$GLOBALS['BOOKMARK_NAMES']; // All tabs array
 
-		$keys=array_keys($bookmark_names[$bookmark_attr]); //Все значения для поиска для данного атрибута
+		$keys=array_keys($bookmark_names[$bookmark_attr]);
 		$sizeof=count($keys);
 		$NumBookmaks=count($bookmark_names[$bookmark_attr]);
 
-		$select_index=array_search($GLOBALS['bookmark_name'], $keys); //Порядковый номер выбраной сейчас вкладки
+		$select_index=array_search($GLOBALS['bookmark_name'], $keys);
 
-		if(! $max_items) //Если в конфиге не задано числа максимально показываемых вкладок, то показывать все!
+		if(! $max_items)
 			{
 			$start=0; $end=$NumBookmaks-1;
 			}
 		else
 			{
 			$delta=$select_index-$max_items+1;
-			if($select_index===false) //Ессли в данной группе нет выбраной вкладке
+			if($select_index===false)
 				{
 				$start=0; $end=$max_items-1;
 				}
