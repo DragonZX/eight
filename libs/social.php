@@ -4,7 +4,7 @@ class Social
 {
 public static function GetLinks($string) //Parsing user LDAP string to links
 {
-
+    $string=str_replace(" ", "", $string); //Kill spaces
     $proto= explode(";", $string);
     for ($i=0; isset($proto[$i]); $i++){$links[$i]=explode(":", $proto[$i]);}
     for ($i=0; isset($links[$i][0]); $i++)
