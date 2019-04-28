@@ -138,12 +138,7 @@ if($Birth)
 }
 //-----------------------------------------------------------------------------
 //Social Block
-if (isset($SLinks)) {
-    for ($i = 0; isset($SLinks[$i][0]); $i++)
-    {
-        echo "<div class='slinks'><a class='fa fa-" . $SLinks[$i][0] . "' style='display:inline' href='" . $SLinks[$i][1] . "'></a></div>";
-    }
-}
+echo Social::DrawButtons(Social::GetLinks($ldap->getValue($dn, $LDAP_SOCIAL_FIELD)),$social_mode);
 $ManDN=$ldap->getValue($dn, $LDAP_MANAGER_FIELD);	
 if($ManDN)
 {
@@ -156,7 +151,6 @@ echo "<div class=\"employee\"><h6>".$L->l('immediate_supervisor').":</h6><br>";
 		echo Staff::makeNameUrlFromDn($ManDN);
 echo "</div>";
 }
-
 if (isset($Manager))
 	echo $Manager;
 

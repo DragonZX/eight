@@ -1,0 +1,97 @@
+#img-social-icons ul li a {
+    display: block;
+    text-indent: -999em;
+    background-image: url(../images/icons-social.png);
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
+    transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    opacity: 0.6;
+}
+#img-social-icons ul li:hover a {
+    opacity: 1;
+}
+#img-social-icons ul li.facebook a {
+    background-position: 0 0;
+}
+#img-social-icons ul li.twitter a {
+    background-position: 0 -32px;
+}
+#img-social-icons ul li.youtube a {
+    background-position: 0 -96px;
+}
+#img-social-icons ul li.googleplus a {
+    background-position: 0 -64px;
+}
+#img-social-icons ul li.pinterest a {
+    background-position: 0 -128px;
+}
+#img-social-icons ul li.myspace a {
+    background-position: 0 -160px;
+}
+#img-social-icons ul li.flickr a {
+    background-position: 0 -192px;
+}
+#img-social-icons ul li.dribble a {
+    background-position: 0 -224px;
+}
+#img-social-icons ul li.stumbleupon a {
+    background-position: 0 -256px;
+}
+#img-social-icons ul li.yahoo a {
+    background-position: 0 -288px;
+}
+#img-social-icons ul li.skype a {
+    background-position: 0 -320px;
+}
+#img-social-icons ul li.rss a {
+    background-position: 0 -352px;
+}
+#img-social-icons ul li.linkedin a {
+    background-position: 0 -384px;
+}
+#img-social-icons ul li.instagram a {
+    background-position: 0 -416px;
+}
+#img-social-icons ul li.ok a {
+    background-position: 0 -448px;
+}
+#img-social-icons ul li.vk a {
+    background-position: 0 -480px;
+}
+#img-social-icons ul li.mymail a {
+    background-position: 0 -512px;
+}
+#img-social-icons ul li.icq a {
+    background-position: 0 -544px;
+}
+#img-social-icons ul li.jabber a {
+    background-position: 0 -576px;
+}
+#img-social-icons ul li.viber a {
+    background-position: 0 -608px;
+}
+#img-social-icons ul li.whatsapp a {
+    background-position: 0 -640px;
+}
+#img-social-icons ul li.bitbucket a {
+    background-position: 0 -672px;
+}
+#img-social-icons ul li.github a {
+    background-position: 0 -704px;
+}
+#img-social-icons ul li.lastfm a {
+    background-position: 0 -736px;
+}
+#img-social-icons ul li.soundcloud a {
+    background-position: 0 -768px;
+}
+#img-social-icons ul li.promodj a {
+    background-position: 0 -800px;
+}
+#img-social-icons ul li.showbiza a {
+    background-position: 0 -832px;
+}

@@ -5,6 +5,7 @@ $skin_styles="
     <link rel=\"stylesheet\" href=\"/skins/default/css/calendar/calendar.css\" type=\"text/css\" />	
     <link rel=\"stylesheet\" type=\"text/css\" href=\"/skins/default/css/lightview/lightview.css\"/>
     <link rel=\"stylesheet\" href=\"/skins/default/css/general.css\" type=\"text/css\" />
+    <link rel=\"stylesheet\" href=\"/skins/default/css/social.css\" type=\"text/css\" />
 ";
 $newwin_styles="
     <link rel=\"STYLESHEET\" href=\"/skins/default/css/newwin.css\" type=\"text/css\" />
@@ -30,3 +31,4 @@ $newwin_js="
 	<script type=\"text/javascript\" src=\"/js/staff.js\"></script>
 	<script type=\"text/javascript\" src=\"/js/si_print_vacation_claim.js\"></script>
 ";
+$social_mode="image";

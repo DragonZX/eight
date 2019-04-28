@@ -35,3 +35,4 @@ $newwin_js="
 	<script type=\"text/javascript\" src=\"/js/staff.js\"></script>
 	<script type=\"text/javascript\" src=\"/js/si_print_vacation_claim.js\"></script>
 ";
+$social_mode="fontawesome";
