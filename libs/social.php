@@ -17,6 +17,7 @@ public static function GetLinks($string) //Parsing user LDAP string to links
             case 'gitlab': $links[$i][1]="https://gitlab.com/".$links[$i][1]; $links[$i][2]="gitlab"; break;
             case 'lgitlab':$links[$i][2]="gitlab"; break;
             case 'twitter': $links[$i][1]="https://twitter.com/".$links[$i][1]; $links[$i][2]="twitter"; break;
+            case 'viber': $links[$i][1]=$links[$i][0].":".$links[$i][1]; $links[$i][2]="viber"; break;
             default: $links[$i][1]=$links[$i][0].":".$links[$i][1]; $links[$i][2]=""; break;
             }
     }
@@ -27,9 +28,9 @@ public static function DrawButtons($links, $mode){
     $buttons='';
     for ($i=0; isset($links[$i][0]); $i++) {
         if ("image" == $mode) {
-            $buttons = "<li class=\"".$links[$i][0]."\"><a href=\"".$links[$i][1]."\" target=\"_blank\"></a></li>";
+            $buttons = $buttons."<li class=\"".$links[$i][0]."\"><a href=\"".$links[$i][1]."\" target=\"_blank\"></a></li>";
         } else {
-            $buttons = "<a href='".$links[$i][1]."'><i class='fa fa-".$links[$i][2]."'></i></a>&nbsp;";
+            $buttons = $buttons."<a href='".$links[$i][1]."' target=\"_blank\"><i class='fa fa-".$links[$i][2]." fa-3x'></i></a>&nbsp;";
         }
     }
         if ("image" == $mode){$buttons ="<div id=\"img-social-icons\"><ul>".$buttons."</ul></div>";}
