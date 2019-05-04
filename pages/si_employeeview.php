@@ -138,7 +138,7 @@ if($Birth)
 }
 //-----------------------------------------------------------------------------
 //Social Block
-echo Social::DrawButtons(Social::GetLinks($ldap->getValue($dn, $LDAP_SOCIAL_FIELD)),$social_mode);
+echo "<div class='sbuttons'>".Social::DrawButtons(Social::GetLinks($ldap->getValue($dn, $LDAP_SOCIAL_FIELD)),$social_mode)."</div>";
 $ManDN=$ldap->getValue($dn, $LDAP_MANAGER_FIELD);	
 if($ManDN)
 {
