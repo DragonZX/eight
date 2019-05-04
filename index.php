@@ -118,7 +118,7 @@ if(isset($_COOKIE['dn']))
 <body onLoad="scroll();">
 
 <?php 
-if (isset($MOTD)){echo '<div id="motd">'.$MOTD.'</div><div id="motd_f"></div>';}
+if (isset($MOTD) & $MOTD!=""){echo '<div id="motd">'.$MOTD.'</div><div id="motd_f"></div>';}
 if($XMPP_ENABLE) 
 	echo "<div id=\"send_xmpp_message\" class=\"lightview\">".$L->l('send_message')."</div>";
 ?>	
