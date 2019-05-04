@@ -11,6 +11,9 @@ $OU="OU=orgunit,DC=domain,DC=ru";
 $DIS_USERS_COND="(!(useraccountcontrol:1.2.840.113556.1.4.803:=2))(!(useraccountcontrol:1.2.840.113556.1.4.803:=16))";
 $LDAP_SIZE_LIMIT_COMPATIBILITY=false;
 
+//MOTD
+$MOTD='Looking for MOTD? <a href="https://www.google.com/search?q=MOTD">Search here</a>';
+
 // LDAP FIELDS
 $LDAP_DISTINGUISHEDNAME_FIELD="distinguishedname";
 $LDAP_USERPRINCIPALNAME_FIELD="userprincipalname";
