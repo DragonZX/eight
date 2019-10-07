@@ -21,7 +21,7 @@ $newwin_styles="
 	<link rel=\"STYLESHEET\" href=\"/inteface/fonts/fontawesome/solid.min.css\" type=\"text/css\" />
 ";
 $skin_js="
-    <script type=\"text/javascript\" src=\"/js/jquery-3.3.1.min.js\"></script>
+    <script type=\"text/javascript\" src=\"/js/jquery-3.4.1.min.js\"></script>
 	<script type=\"text/javascript\" src=\"/js/prototype.js\"></script>
 	<script type=\"text/javascript\" src=\"/js/staff.js\"></script>
 	<script type=\"text/javascript\" src=\"/js/calendar/calendar.js\"></script>	
@@ -33,7 +33,7 @@ $skin_js="
 	<script type=\"text/javascript\" src=\"/js/si_print_vacation_claim.js\"></script>
 ";
 $newwin_js="
-    <script type=\"text/javascript\" src=\"/js/jquery-3.3.1.min.js\"></script>
+    <script type=\"text/javascript\" src=\"/js/jquery-3.4.1.min.js\"></script>
 	<script type=\"text/javascript\" src=\"/js/prototype.js\"></script>
 	<script type=\"text/javascript\" src=\"/js/smartform.js\"></script>
 	<script type=\"text/javascript\" src=\"/js/staff.js\"></script>
