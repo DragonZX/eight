@@ -22,16 +22,6 @@ if($_COOKIE['dn'])
 	$strPriority = $GLOBALS['CALL_VIA_IP_PRIORITY'];
 	$strMaxRetry = $GLOBALS['CALL_VIA_IP_MAX_RETRY'];
 
-$CALL_VIA_IP_HOST = "192.168.200.90";
-$CALL_VIA_IP_USER = "phones";
-$CALL_VIA_IP_SECRET = "Secret_321";
-$CALL_VIA_IP_CHANEL = "SIP/$strCallerIDNumber@Infinity";
-$CALL_VIA_IP_CONTEXT = "phone-book";
-$CALL_VIA_IP_WAIT_TIME = "30";
-$CALL_VIA_IP_PRIORITY = "1";
-$CALL_VIA_IP_MAX_RETRY = "0";
-
-
 	$pos=strpos($number,"local");
 
 	if ($number == null):
