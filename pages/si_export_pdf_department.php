@@ -20,7 +20,7 @@ if($ENABLE_PDF_EXPORT)
 	$html.=PDF::get_pdf_head();
 
 	$html.="
-	<table cellpadding='0' border='0' cellspacing='0' class='staff'>
+	<table class='staff'>
 	";
 
 	$ldap=new LDAP($LDAPServer, $LDAPUser, $LDAPPassword);
@@ -97,7 +97,16 @@ if($ENABLE_PDF_EXPORT)
 			}
 		}
 	$html.="</table>";
-	$mpdf=new Mpdf(['mode'=>'utf8'], ['format'=>'A4'], ['orientation' => 'L']);
+    $mpdf= new Mpdf([
+            'format' => 'A4',
+            'margin_left' => 0,
+            'margin_right' => 0,
+            'margin_top' => 0,
+            'margin_bottom' => 0,
+            'margin_header' => 0,
+            'margin_footer' => 0,
+            'default_font' => 'arial2'
+        ]);
 	$stylesheet = file_get_contents("../skins/".$CURRENT_SKIN."/css/pdf.css");
 	$mpdf->WriteHTML($stylesheet, 1);
 	$mpdf->WriteHTML($html, 2);

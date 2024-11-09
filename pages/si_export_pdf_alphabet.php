@@ -16,10 +16,8 @@ if($ENABLE_PDF_EXPORT)
 	@$bookmark_attr=($_POST['bookmark_attr'])?$_POST['bookmark_attr']:(($_GET['bookmark_attr'])?$_GET['bookmark_attr']:current(array_keys($BOOKMARK_NAMES)));
 
 
-	$html.=PDF::get_pdf_head();
-	$html.="
-	<table cellpadding='0' border='0' cellspacing='0' class='staff'>
-	";
+	$html_head = PDF::get_pdf_head();
+	$html_table ="<table class='staff'>";
 
 	$ldap=new LDAP($LDAPServer, $LDAPUser, $LDAPPassword);
 	$CompanyNameLdapFilter=Application::getCompanyNameLdapFilter();
@@ -90,7 +88,16 @@ if($ENABLE_PDF_EXPORT)
 
 	$html.="</table>";
 
-	$mpdf=new Mpdf(['mode'=>'utf8'], ['format'=>'A4'], ['orientation' => 'L']);
+        $mpdf= new Mpdf([
+            'format' => 'A4',
+            'margin_left' => 0,
+            'margin_right' => 0,
+            'margin_top' => 0,
+            'margin_bottom' => 0,
+            'margin_header' => 0,
+            'margin_footer' => 0,
+            'default_font' => 'arial2'
+        ]);
 
 	$stylesheet = file_get_contents("../skins/".$CURRENT_SKIN."/css/pdf.css");
 	$mpdf->WriteHTML($stylesheet, 1);
