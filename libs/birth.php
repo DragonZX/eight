@@ -1,10 +1,10 @@
 <?php
-//Выввод ближайших дней рождений
+//Вывод ближайших дней рождения
 date_default_timezone_set($LDAPTIMEZONE);
 $time=time();
 if($NEAR_BIRTHDAYS) 
 	{	
-	switch($BIRTH_DATE_FORMAT) //Определяем шаблоны для поиска ближайших дней рождения в зависимости от формат хранения даты
+	switch($BIRTH_DATE_FORMAT) //Определяем шаблоны для поиска ближайших дней рождения в зависимости от формата хранения даты
 		{
 		case 'yyyy-mm-dd':
 			$DateFormat="m-d";
@@ -25,25 +25,25 @@ if($NEAR_BIRTHDAYS)
 		return (int) $e[1]." ".$GLOBALS['MONTHS'][(int) $e[2]];
 		}
 	
-	echo"<div class=\"heads\">
+	echo "<div class=\"heads\">
 	<fieldset class=\"birthdays\">
 	<legend>".$L->l('nearest')." ".$NUM_ALARM_DAYES." ".$L->l('they_have_birthdays').":</legend>";	
 	
-	@$_GET['birthdayssortcolumn']=($_GET['birthdayssortcolumn'])?$_GET['birthdayssortcolumn']:"Дата";
-	@$_GET['birthdayssorttype']=($_GET['birthdayssorttype'])?$_GET['birthdayssorttype']:"ASC";
+	@$_GET['birthdayssortcolumn']=($_GET['birthdayssortcolumn'])?:"Дата";
+	@$_GET['birthdayssorttype']=($_GET['birthdayssorttype'])?:"ASC";
 	
 	$B=new LDAPTable($LDAPServer, $LDAPUser, $LDAPPassword, 389, false, false, "birthdays"); //Создаем LDAP таблицу берущую данные из БД
 	
 	//Добавляем колонку с ФИО
 	if($USE_DISPLAY_NAME)
-		$B->addColumn($DISPLAY_NAME_FIELD.", ".$LDAP_DISTINGUISHEDNAME_FIELD, "ФИО", false);	
+		$B->addColumn($DISPLAY_NAME_FIELD.", ".$LDAP_DISTINGUISHEDNAME_FIELD, "ФИО");
 	else	
-		$B->addColumn($LDAP_DISTINGUISHEDNAME_FIELD, "ФИО", false);
+		$B->addColumn($LDAP_DISTINGUISHEDNAME_FIELD, "ФИО");
 		
 	//Добавляем колонку с датой рождения
 	$B->addColumn($LDAP_BIRTH_FIELD, "Дата", false, 0, false, $SortType);
 	
-	//Преобразуем колонку с ФИО в ссылку на полную инфу о сотруднике
+	//Преобразуем колонку с ФИО в ссылку на полную информацию о сотруднике
 	$B->addPregReplace("/^(.*)$/u", function($m){return Staff::makeNameUrlFromDn($m[1]);}, "ФИО");
 
 	//В зависимости от формата хранения даты преобразуем дату дня рождения для последующего преобразования в удобно читаемый формат
@@ -77,7 +77,7 @@ if($NEAR_BIRTHDAYS)
 		$B->printTable($OU, "(&".$CompanyNameLdapFilter."(|".$Dates.")".$DIS_USERS_COND.")");
 		}
 
-	//Если необходимо ограничивать вывод строк с ближайшими днями рождения, то пишим в тело html-документа соответствующую информацию
+	//Если необходимо ограничивать вывод строк с ближайшими днями рождения, то пишем в тело html-документа соответствующую информацию
 	if($BIRTH_VIS_ROW_NUM)
 		echo"<div id=\"birth_vis_row_num\" class=\"hidden\">".$BIRTH_VIS_ROW_NUM."</div><a id=\"show_all_birth\" href=\"#\">&darr;</a>";
 		
