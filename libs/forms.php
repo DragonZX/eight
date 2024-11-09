@@ -63,7 +63,7 @@ class LDAPTable
 		$Value1=$Value;
 		if($Value1)
 			{
-			@$Value=iconv($GLOBALS[CHARSET_DATA], $GLOBALS[CHARSET_APP], $Value1);
+			@$Value=iconv($GLOBALS['CHARSET_DATA'], $GLOBALS['CHARSET_APP'], $Value1);
 			if(!$Value)
 				$Value=$Value1;
 			}							
@@ -78,7 +78,7 @@ class LDAPTable
 		
 		if((is_array(@$this->Attributes['title']))?(!in_array($Title, @$this->Attributes['title'])):true)
 			{
-			$j=count(@$this->Attributes[name]);
+			$j=count((array)@$this->Attributes['name']);
 
 			$this->Attributes['title'][$j]=$Title;		
 			$this->Attributes['sort'][$j]=$Sort;	
@@ -91,13 +91,13 @@ class LDAPTable
 		
 	function addVar($Name, $Value)
 		{
-		@$this->Vars[name][$Name]=$Name;
-		@$this->Vars[value][$Name]=$Value;
+		@$this->Vars['name'][$Name]=$Name;
+		@$this->Vars['value'][$Name]=$Value;
 		}	
 		
 	function addPregReplace($Pattern, $Replacement, $Title, $Limit="-1", $Conditions=false)
 		{
-		$j=count(@$this->PregReplace[$Title][pattern]);
+		$j=count((array)@$this->PregReplace[$Title]['pattern']);
 		
 		$this->PregReplace[$Title]['pattern'][$j]=$Pattern;
 		$this->PregReplace[$Title]['replacement'][$j]=$Replacement;
@@ -110,7 +110,7 @@ class LDAPTable
 				{
 				if((is_array($this->Attributes['name']))?(in_array($key, $this->Attributes['name'])):false)
 					{
-					foreach($Conditions[$key] as $key1=>$value1)
+					foreach($value as $key1=> $value1)
 						{
 						$this->PregReplace[$Title]['conditions'][$j][$key][$key1]=$value1;
 						}					
@@ -130,14 +130,14 @@ class LDAPTable
 		
 	private function PregReplace($Title, $Value)
 		{
-		if(is_array(@$this->PregReplace[$Title][pattern]))
+		if(is_array(@$this->PregReplace[$Title]['pattern']))
 			{	
-			$AK=array_keys($this->PregReplace[$Title][pattern]);
+			$AK=array_keys($this->PregReplace[$Title]['pattern']);
 			$SizeOf=count($AK);
 			for($i=0; $i<$SizeOf; $i++)
 				{
 				if($this->PregReplace[$Title]['apply'][$i])
-					$Value=preg_replace_callback($this->PregReplace[$Title][pattern][$i], $this->PregReplace[$Title][replacement][$i], $Value, $this->PregReplace[$Title][limit][$i]);
+					$Value=preg_replace_callback($this->PregReplace[$Title]['pattern'][$i], $this->PregReplace[$Title]['replacement'][$i], $Value, $this->PregReplace[$Title]['limit'][$i]);
 				}
 			}
 		return $Value;
@@ -165,20 +165,20 @@ class LDAPTable
 					
 					if(is_array($this->Vars['name']))
 						{
-						$AK=array_keys(@$this->Vars[name]);
+						$AK=array_keys(@$this->Vars['name']);
 						$SizeOf1=count($AK);
 						for($p=0; $p<$SizeOf1; $p++)
 							{
-							@$Href=$Href."&".$this->Vars[name][$AK[$p]]."=".$this->Vars[value][$AK[$p]];
+							@$Href=$Href."&".$this->Vars['name'][$AK[$p]]."=".$this->Vars['value'][$AK[$p]];
 							}
 						}
-					echo"<a class=\"".(($this->SortColumn==@$this->Attributes[title][$i])?$this->SortType:"")."\" href=\"".$Href."&".$this->UI."sortcolumn=".@$this->Attributes[title][$i]."&".$this->UI."sorttype=".(($this->SortType=="ASC")?"DESC":"ASC")."\">";
-					echo @$this->Attributes[title][$i];
+					echo"<a class=\"".(($this->SortColumn==@$this->Attributes['title'][$i])?$this->SortType:"")."\" href=\"".$Href."&".$this->UI."sortcolumn=".@$this->Attributes['title'][$i]."&".$this->UI."sorttype=".(($this->SortType=="ASC")?"DESC":"ASC")."\">";
+					echo @$this->Attributes['title'][$i];
 					echo"</a>";
 					}
 				else
 					{
-					echo "<div>".@$this->Attributes[title][$i]."</div>";
+					echo "<div>".@$this->Attributes['title'][$i]."</div>";
 					}
 				echo"</th>";
 				}
@@ -196,12 +196,12 @@ class LDAPTable
 			if(strpos($V, ","))
 				$ADAttributes=array_merge($ADAttributes, str_replace(" ", "", explode(",", $V)));
 			}
-		@$SizeOf=count($this->Attributes[name]);
+		@$SizeOf=count($this->Attributes['name']);
 		$LS=ldap_search($this->LC, $BaseDN, $Filter, $ADAttributes);
 
 		if($Entries=ldap_get_entries($this->LC, $LS)) 
 			{ 
-			echo"<table class='sqltable' cellpadding='4'>";
+			echo"<table class='sqltable'>";
 
 			if($Entries['count']&&$this->Head)
 				{self::printHead();}
@@ -317,15 +317,15 @@ class LDAPTable
 
 					//Regular expressions replacement check
 					//-----------------------------------------------------------------------------				
-					if(is_array(@$this->PregReplace[$this->Attributes[title][$j]]['conditions']))
+					if(is_array(@$this->PregReplace[$this->Attributes['title'][$j]]['conditions']))
 						{						
-						foreach(@$this->PregReplace[$this->Attributes[title][$j]]['conditions'] as $key=>$value)
+						foreach(@$this->PregReplace[$this->Attributes['title'][$j]]['conditions'] as $key=>$value)
 							{
-							@$this->PregReplace[$this->Attributes[title][$j]]['apply'][$key]=true;
+							@$this->PregReplace[$this->Attributes['title'][$j]]['apply'][$key]=true;
 							//$PreviousFlag=true;
-							foreach(@$this->PregReplace[$this->Attributes[title][$j]]['conditions'][$key] as $key1=>$value1) //Цикл по ключам ldap
+							foreach(@$this->PregReplace[$this->Attributes['title'][$j]]['conditions'][$key] as $key1=>$value1) //Цикл по ключам ldap
 								{
-								foreach(@$this->PregReplace[$this->Attributes[title][$j]]['conditions'][$key][$key1] as $key2=>$value2)
+								foreach(@$this->PregReplace[$this->Attributes['title'][$j]]['conditions'][$key][$key1] as $key2=>$value2)
 									{
 																	
 									if($this->SortColumn)
@@ -337,15 +337,15 @@ class LDAPTable
 										case "=":
 											//echo $ConditionValue."--------".$value2."<br>";
 											if($ConditionValue==$value2)
-												@$this->PregReplace[$this->Attributes[title][$j]]['apply'][$key]=$this->PregReplace[$this->Attributes[title][$j]]['apply'][$key]&&true;
+												@$this->PregReplace[$this->Attributes['title'][$j]]['apply'][$key]=$this->PregReplace[$this->Attributes['title'][$j]]['apply'][$key]&&true;
 											else
-												@$this->PregReplace[$this->Attributes[title][$j]]['apply'][$key]=$this->PregReplace[$this->Attributes[title][$j]]['apply'][$key]&&false;
+												@$this->PregReplace[$this->Attributes['title'][$j]]['apply'][$key]=$this->PregReplace[$this->Attributes['title'][$j]]['apply'][$key]&&false;
 										break;
 										case "!=":
 											if($ConditionValue!=$value2)
-												@$this->PregReplace[$this->Attributes[title][$j]]['apply'][$key]=$this->PregReplace[$this->Attributes[title][$j]]['apply'][$key]&&true;
+												@$this->PregReplace[$this->Attributes['title'][$j]]['apply'][$key]=$this->PregReplace[$this->Attributes['title'][$j]]['apply'][$key]&&true;
 											else
-												@$this->PregReplace[$this->Attributes[title][$j]]['apply'][$key]=$this->PregReplace[$this->Attributes[title][$j]]['apply'][$key]&&false;
+												@$this->PregReplace[$this->Attributes['title'][$j]]['apply'][$key]=$this->PregReplace[$this->Attributes['title'][$j]]['apply'][$key]&&false;
 										break;	
 
 										case "in_range_date":
@@ -354,17 +354,17 @@ class LDAPTable
 												$e=explode(" - ", $ConditionValue);
 												if((Time::getTimeOfDMYHI($e[1])>=$value2)&&(Time::getTimeOfDMYHI($e[0])<=$value2))
 													{
-													$this->PregReplace[$this->Attributes[title][$j]]['apply'][$key]=$this->PregReplace[$this->Attributes[title][$j]]['apply'][$key]&&true;
+													$this->PregReplace[$this->Attributes['title'][$j]]['apply'][$key]=$this->PregReplace[$this->Attributes['title'][$j]]['apply'][$key]&&true;
 													}
 												else
-													$this->PregReplace[$this->Attributes[title][$j]]['apply'][$key]=$this->PregReplace[$this->Attributes[title][$j]]['apply'][$key]&&false;
+													$this->PregReplace[$this->Attributes['title'][$j]]['apply'][$key]=$this->PregReplace[$this->Attributes['title'][$j]]['apply'][$key]&&false;
 												}
 											else
-												@$this->PregReplace[$this->Attributes[title][$j]]['apply'][$key]=$this->PregReplace[$this->Attributes[title][$j]]['apply'][$key]&&false;
+												@$this->PregReplace[$this->Attributes['title'][$j]]['apply'][$key]=$this->PregReplace[$this->Attributes['title'][$j]]['apply'][$key]&&false;
 										break;	
 											
 										default:
-										$this->PregReplace[$this->Attributes[title][$j]]['apply'][$key]=true;	
+										$this->PregReplace[$this->Attributes['title'][$j]]['apply'][$key]=true;	
 										}
 									}
 								}
@@ -374,8 +374,8 @@ class LDAPTable
 						}				
 					//-----------------------------------------------------------------------------							
 						
-					@$Value=self::PregReplace($this->Attributes[title][$j], $Value);
-					//$Value=self::LogicReplace($this->Attributes[title][$j], $Value);
+					@$Value=self::PregReplace($this->Attributes['title'][$j], $Value);
+					//$Value=self::LogicReplace($this->Attributes['title'][$j], $Value);
 					
 					if(!$this->Attributes['notshow'][$j])
 						{
@@ -441,7 +441,7 @@ class LDAP
 					}
 				else
 					{
-					if($WhatChange[$key]=="")
+					if($value =="")
 						{
 						unset($WhatChange[$key]);
 						$KeyForDel[]=$key;
@@ -686,7 +686,7 @@ class LDAP
 			//-----------------------------------------------------------------------------
 			
 			
-			for($i=0; $i<@$Entries[count]; $i++) 
+			for($i=0; $i<@$Entries['count']; $i++)
 				{ 			
 				for($j=0; $j<$SizeOf; $j++)
 					{
