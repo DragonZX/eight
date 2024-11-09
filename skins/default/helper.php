@@ -14,7 +14,7 @@ $newwin_styles="
 	<link rel=\"STYLESHEET\" href=\"/skins/default/css/general.css\" type=\"text/css\" />
 ";
 $skin_js="
-    <script type=\"text/javascript\" src=\"/js/jquery-3.4.1.min.js\"></script>
+    <script type=\"text/javascript\" src=\"/js/jquery-3.7.1.min.js\"></script>
 	<script type=\"text/javascript\" src=\"/js/prototype.js\"></script>
 	<script type=\"text/javascript\" src=\"/js/staff.js\"></script>
 	<script type=\"text/javascript\" src=\"/js/calendar/calendar.js\"></script>	
@@ -25,7 +25,7 @@ $skin_js="
 	<script type=\"text/javascript\" src=\"/js/lightview/lightview.js\"></script>
 ";
 $newwin_js="
-    <script type=\"text/javascript\" src=\"/js/jquery-3.4.1.min.js\"></script>
+    <script type=\"text/javascript\" src=\"/js/jquery-3.7.1.min.js\"></script>
 	<script type=\"text/javascript\" src=\"/js/prototype.js\"></script>
 	<script type=\"text/javascript\" src=\"/js/smartform.js\"></script>
 	<script type=\"text/javascript\" src=\"/js/staff.js\"></script>
